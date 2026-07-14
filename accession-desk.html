@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23f7f2e5%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%277.5%27 fill=%27%235b4b8a%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2711.5%27 fill=%27none%27 stroke=%27%23a9853b%27 stroke-width=%272.4%27/%3E%3C/svg%3E">
+<title>The Accession Desk — The Bestiary</title>
+<style>
+  :root {
+    --ink:#22222a; --muted:#6b6b76; --paper:#fdfcf9; --card:#ffffff;
+    --line:#e3e0d8; --accent:#5b4b8a; --accent-soft:#efecf6;
+    --gold:#a9853b; --gold-soft:#f6efdf; --gold-line:#e0d0a8;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; line-height:1.6; font-size:1.02rem; }
+  main { max-width:54rem; margin:0 auto; padding:2.5rem 1.25rem 5rem; }
+  .kicker,.note,label,button,.crumbs,footer,textarea,input,select,pre { font-family:system-ui,sans-serif; }
+  .kicker { font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); }
+  h1 { font-size:2.1rem; line-height:1.15; margin:.2rem 0 .4rem; font-family:Georgia,serif; }
+  h2 { font-size:1.25rem; margin:2.2rem 0 .7rem; border-top:1px solid var(--line); padding-top:1.3rem; font-family:Georgia,serif; }
+  .crumbs { font-size:.86rem; margin-bottom:1.4rem; }
+  .crumbs a { color:var(--accent); font-weight:700; text-decoration:none; }
+  .thesis { background:var(--accent-soft); border-left:4px solid var(--accent); padding:.9rem 1.1rem; margin:1.2rem 0; }
+  .note { font-size:.85rem; color:var(--muted); }
+
+  /* nomenclator */
+  .nomen { background:var(--gold-soft); border:1px solid var(--gold-line); border-radius:14px; padding:1.1rem 1.2rem; }
+  .nomen .row { display:flex; flex-wrap:wrap; gap:.6rem; align-items:center; margin-top:.6rem; }
+  .nomen select { padding:.45rem .6rem; border:1px solid var(--gold-line); border-radius:8px; background:#fff; font-size:.92rem; max-width:100%; }
+  .nomen button { cursor:pointer; border:0; border-radius:999px; padding:.55rem 1rem; font-weight:800; font-size:.88rem; color:#fff; background:var(--gold); }
+  .nomen .result { font-family:Georgia,serif; font-size:1.35rem; margin-top:.8rem; }
+  .nomen .result i { color:var(--accent); }
+  .nomen .gloss { font-family:Georgia,serif; color:var(--muted); font-style:italic; }
+
+  form { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap: .9rem 1rem; margin-top:1rem; }
+  .field { display:flex; flex-direction:column; gap:.25rem; }
+  .field.wide { grid-column:1 / -1; }
+  label { font-size:.78rem; font-weight:800; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); }
+  label em { text-transform:none; letter-spacing:0; font-weight:500; color:var(--muted); }
+  input, select, textarea { padding:.55rem .65rem; border:1px solid var(--line); border-radius:8px; background:#fff; font-size:.95rem; color:var(--ink); }
+  textarea { min-height:4.2rem; resize:vertical; }
+  input:focus, select:focus, textarea:focus { outline:2px solid var(--accent-soft); border-color:var(--accent); }
+
+  .out { margin-top:1.4rem; }
+  pre { background:#211f2c; color:#e8e4f4; border-radius:12px; padding:1rem 1.1rem; font-size:.82rem; line-height:1.5; overflow:auto; max-height:34rem; }
+  .actions { display:flex; gap:.6rem; flex-wrap:wrap; margin-top:.7rem; }
+  .actions button { cursor:pointer; border:0; border-radius:999px; padding:.6rem 1.1rem; font-weight:800; font-size:.9rem; color:#fff; background:var(--accent); }
+  .actions .ok { color:var(--accent); font-weight:700; align-self:center; font-size:.9rem; }
+  footer { margin-top:3rem; border-top:1px solid var(--line); padding-top:1rem; font-size:.85rem; color:var(--muted); }
+  @media (max-width:640px) { form { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="kicker">The Bestiary · curator’s room</div>
+  <h1>The Accession Desk</h1>
+  <nav class="crumbs"><a href="index.html">← Back to the halls</a></nav>
+
+  <div class="thesis">
+    This desk composes <strong>one JSON row</strong> on your screen and stores nothing — refresh and it forgets. Fill it from the student’s own paper layer, copy the row into <code>data/bestiary.json</code> (newest last), add a plate to <code>plates/</code> (a screenshot, <code>tools/capture.mjs</code>, or the student’s own field sketch), commit, push. The creature appears.
+  </div>
+  <p class="note">Accession requires the collector’s consent. First names or field-names only. De-accession is immediate on request.</p>
+
+  <h2>The Nomenclator</h2>
+  <div class="nomen">
+    <span class="note">Deals Latin-ish binomials — <strong>dog Latin, proudly</strong>: these are names, not claims. The collector always has final say. Genus goes by what the creature does; species by where it lives or how it behaves.</span>
+    <div class="row">
+      <select id="genusSel" aria-label="Genus"></select>
+      <select id="speciesSel" aria-label="Species epithet"></select>
+      <button id="dealName">Deal a name</button>
+    </div>
+    <div class="result"><i id="nomenOut">—</i> <span class="gloss" id="nomenGloss"></span></div>
+    <div class="row"><button id="useName" style="background:var(--accent)">Use this name below</button></div>
+  </div>
+
+  <h2>The specimen’s file</h2>
+  <form id="f">
+    <div class="field"><label>Binomial</label><input id="binomial" placeholder="Aleator melodicus"></div>
+    <div class="field"><label>Translation <em>— “the …”</em></label><input id="translation" placeholder="the melodious dice-player"></div>
+    <div class="field"><label>Common name <em>— the app’s title</em></label><input id="commonName" placeholder="The Dice-Drummer"></div>
+    <div class="field"><label>Collector <em>— first name or field-name</em></label><input id="collector" placeholder="Maya"></div>
+    <div class="field"><label>Session observed</label><input id="sessionObserved" type="number" min="1" max="12" value="4"></div>
+    <div class="field"><label>Kind</label><select id="kind"></select></div>
+    <div class="field"><label>Habitat</label><select id="habitat"></select></div>
+    <div class="field"><label>Hall <em>— the idea it teaches</em></label><select id="hall"></select></div>
+    <div class="field wide"><label>Public URL</label><input id="url" placeholder="https://username.github.io/my-app/"></div>
+    <div class="field wide"><label>Observed behaviors <em>— one per line; what can the reader do?</em></label><textarea id="behaviors" placeholder="Tap the pads to seed a beat.&#10;Raise the heat slider and the rhythm gambles."></textarea></div>
+    <div class="field"><label>Diet <em>— the inputs it feeds on</em></label><input id="diet" placeholder="taps and one slider"></div>
+    <div class="field"><label>Temperament <em>— edge behavior, honestly</em></label><input id="temperament" placeholder="calm below 1.5, unruly above"></div>
+    <div class="field wide"><label>Distinguishing marks <em>— what to notice</em></label><input id="marks" placeholder="the rhythm never repeats at high heat"></div>
+    <div class="field wide"><label>Open question <em>— what the collector would try next</em></label><input id="openQuestion" placeholder="Would a listener notice two repeated bars?"></div>
+    <div class="field wide"><label>The entry <em>— optional prose natural history, in the collector’s voice</em></label><textarea id="entry" placeholder="This restless creature keeps no fixed song…"></textarea></div>
+    <div class="field wide"><label>Teaching line <em>— “Thus it teaches …”</em></label><input id="teachingLine" placeholder="Thus it teaches Temperature: sharpen the dice and the song grows tame."></div>
+    <div class="field"><label>Placard · AI helped</label><input id="aiHelped" placeholder="AI wrote the WebAudio code."></div>
+    <div class="field"><label>Placard · the collector chose</label><input id="chose" placeholder="Chose the pentatonic cage."></div>
+    <div class="field"><label>Placard · tested</label><input id="tested" placeholder="Tested on a phone, at low volume."></div>
+    <div class="field"><label>Placard · changed or rejected</label><input id="changedOrRejected" placeholder="Rejected the first drum sound as mud."></div>
+    <div class="field wide"><label>Lineage <em>— one per line; ancestors and kin</em></label><textarea id="lineage" placeholder="Descended from the collector’s Session 1 Game of Life."></textarea></div>
+  </form>
+
+  <div class="out">
+    <h2>The row</h2>
+    <p class="note">Paste this as the last item of <code>"specimens"</code> in <code>data/bestiary.json</code> (the census treats the last row as the newest accession).</p>
+    <pre id="json"></pre>
+    <div class="actions">
+      <button id="copy">Copy the row</button>
+      <span class="ok" id="copied" hidden>Copied — the registrar thanks you.</span>
+    </div>
+  </div>
+
+  <footer>The Accession Desk · composes locally, stores nothing, sends nothing · The Bestiary is a census, not a contest.</footer>
+</main>
+
+<script>
+(async function () {
+  /* ---------- the Nomenclator ---------- */
+  const GENERA = [
+    ["Aleator","the dice-player — creatures of chance"],
+    ["Cantor","the singer — creatures of sound"],
+    ["Cartographa","the mapper — creatures that arrange"],
+    ["Custos","the keeper — creatures that test and guard"],
+    ["Fabrica","the workshop — creatures that build"],
+    ["Hortus","the garden — creatures that grow things"],
+    ["Lucerna","the lantern — creatures that reveal"],
+    ["Ludus","the game — creatures of play"],
+    ["Machina","the engine — creatures that simulate"],
+    ["Oraculum","the oracle — creatures that predict"],
+    ["Pictor","the painter — creatures of pictures"],
+    ["Saltator","the dancer — creatures that move"],
+    ["Speculum","the mirror — creatures that compare"],
+    ["Textor","the weaver — creatures of words"],
+    ["Venator","the hunter — creatures that search"]
+  ];
+  const SPECIES = [
+    ["bifurcans","forking"],["calidus","hot-running"],["cotidianus","everyday"],
+    ["curiosus","curious"],["domesticus","of the household"],["ferox","fierce"],
+    ["frigidus","cold-running"],["loquax","talkative"],["ludens","playing"],
+    ["melodicus","melodious"],["minimus","smallest"],["nocturnus","of the night"],
+    ["placidus","calm"],["silvestris","of the woods"],["stellaris","starry"],
+    ["tenax","stubborn"],["urbanus","of the town"],["vagans","wandering"],
+    ["velox","swift"],["viridis","green"]
+  ];
+  const gSel = document.getElementById('genusSel'), sSel = document.getElementById('speciesSel');
+  GENERA.forEach(([g, gloss], i) => gSel.add(new Option(g + ' — ' + gloss, i)));
+  SPECIES.forEach(([s, gloss], i) => sSel.add(new Option(s + ' — ' + gloss, i)));
+  const out = document.getElementById('nomenOut'), glossEl = document.getElementById('nomenGloss');
+  function showName() {
+    const g = GENERA[gSel.value], s = SPECIES[sSel.value];
+    out.textContent = g[0] + ' ' + s[0];
+    glossEl.textContent = '— roughly, “' + g[1].split('—')[0].trim() + ', ' + s[1] + '”';
+  }
+  gSel.addEventListener('change', showName);
+  sSel.addEventListener('change', showName);
+  document.getElementById('dealName').addEventListener('click', () => {
+    gSel.value = Math.floor(Math.random() * GENERA.length);
+    sSel.value = Math.floor(Math.random() * SPECIES.length);
+    showName();
+  });
+  document.getElementById('useName').addEventListener('click', () => {
+    const g = GENERA[gSel.value], s = SPECIES[sSel.value];
+    document.getElementById('binomial').value = g[0] + ' ' + s[0];
+    document.getElementById('translation').value = g[1].split('—')[0].trim().replace(/^the /, 'the ') + ', ' + s[1];
+    refresh();
+  });
+  showName();
+
+  /* ---------- selects from the live collection file (falls back if offline) ---------- */
+  let meta = { habitats:[{id:'stories-words',label:'Stories & words'}], halls:[{id:'dice',hall:'Hall of Dice'}], kinds:[{id:'interactive',label:'Interactive'}] };
+  try { meta = await fetch('data/bestiary.json').then(r => r.json()); } catch (e) {}
+  const hallSel = document.getElementById('hall'), habSel = document.getElementById('habitat'), kindSel = document.getElementById('kind');
+  meta.halls.forEach(h => hallSel.add(new Option(h.hall + ' — ' + (h.idea || ''), h.id)));
+  meta.habitats.forEach(h => habSel.add(new Option(h.label, h.id)));
+  meta.kinds.forEach(k => kindSel.add(new Option(k.label + (k.room ? ' — ' + k.room : ''), k.id)));
+
+  /* ---------- compose the row ---------- */
+  const $ = id => document.getElementById(id).value.trim();
+  const lines = id => $(id).split('\n').map(x => x.trim()).filter(Boolean);
+  const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+  function refresh() {
+    const binomial = $('binomial') || 'Specimen innominatum';
+    const row = {
+      id: slug(binomial),
+      wing: 'cohort',
+      binomial: binomial,
+      translation: $('translation'),
+      commonName: $('commonName'),
+      collector: $('collector'),
+      sessionObserved: Number($('sessionObserved')) || 1,
+      habitat: habSel.value,
+      hall: hallSel.value,
+      kind: kindSel.value,
+      url: $('url'),
+      plate: 'plates/' + slug(binomial) + '.png',
+      plateKind: 'plate',
+      behaviors: lines('behaviors'),
+      diet: $('diet'),
+      temperament: $('temperament'),
+      marks: $('marks'),
+      openQuestion: $('openQuestion'),
+      entry: $('entry'),
+      teachingLine: $('teachingLine'),
+      placard: {
+        aiHelped: $('aiHelped'),
+        chose: $('chose'),
+        tested: $('tested'),
+        changedOrRejected: $('changedOrRejected')
+      },
+      lineage: lines('lineage'),
+      stages: [ { stage: 'hatchling', session: Number($('sessionObserved')) || 1 } ]
+    };
+    document.getElementById('json').textContent = JSON.stringify(row, null, 2) + ',';
+  }
+  document.getElementById('f').addEventListener('input', refresh);
+  [hallSel, habSel, kindSel].forEach(el => el.addEventListener('change', refresh));
+  refresh();
+
+  document.getElementById('copy').addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(document.getElementById('json').textContent);
+      const ok = document.getElementById('copied');
+      ok.hidden = false; setTimeout(() => ok.hidden = true, 2500);
+    } catch (e) {
+      const ok = document.getElementById('copied');
+      ok.textContent = 'Copy blocked here — select the text and copy by hand.';
+      ok.hidden = false;
+    }
+  });
+})();
+</script>
+</body>
+</html>

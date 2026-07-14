@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23f7f2e5%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%277.5%27 fill=%27%235b4b8a%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2711.5%27 fill=%27none%27 stroke=%27%23a9853b%27 stroke-width=%272.4%27/%3E%3C/svg%3E">
+<title>The Bestiary — A Natural History of What This Cohort Has Built</title>
+<style>
+  :root {
+    --ink:#22222a; --muted:#6b6b76; --paper:#fdfcf9; --card:#ffffff;
+    --line:#e3e0d8; --accent:#5b4b8a; --accent-soft:#efecf6;
+    --gold:#a9853b; --gold-soft:#f6efdf; --gold-line:#e0d0a8;
+    --green:#2f6f5e; --green-soft:#e7f1ee; --orange:#c96b32; --orange-soft:#faeee6;
+    --parchment:#f7f2e5;
+  }
+  body.lantern {
+    --ink:#ece7da; --muted:#a49f92; --paper:#17161f; --card:#201f2b;
+    --line:#3a3850; --accent:#b0a1dd; --accent-soft:#2a2740;
+    --gold:#d4b36a; --gold-soft:#2e2a1e; --gold-line:#584a28;
+    --green:#7fb8a5; --green-soft:#1e2b27; --orange:#e09565; --orange-soft:#33261d;
+    --parchment:#232130;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; line-height:1.65; font-size:1.05rem; transition:background .5s ease, color .5s ease; }
+  main { width:min(72rem,calc(100% - 2rem)); margin:0 auto; padding:2.5rem 0 5rem; }
+  h1 { max-width:16ch; font-size:clamp(2.5rem,6vw,5.2rem); line-height:1.02; letter-spacing:-.045em; margin:.2rem 0 .7rem; }
+  h2 { font-size:clamp(1.55rem,3vw,2.25rem); line-height:1.15; margin:0 0 .55rem; }
+  a { color:inherit; }
+  .kicker,.note,.eyebrow,.quick-nav,.chiprow,.census,.controls,footer,.tour,.steps,.tag,.ask,.wing-tag { font-family:system-ui,sans-serif; }
+  .kicker { font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); }
+  .byline { max-width:55ch; color:var(--muted); font-size:1.2rem; margin-bottom:1.8rem; }
+  .thesis { max-width:68ch; background:var(--accent-soft); border-left:4px solid var(--accent); padding:1rem 1.1rem; margin:1.4rem 0 1.2rem; }
+  .thesis p { margin:.4rem 0; }
+  .note { font-size:.86rem; color:var(--muted); }
+  section { margin-top:3.2rem; scroll-margin-top:1rem; }
+  .section-head { display:flex; justify-content:space-between; gap:1rem; align-items:end; margin-bottom:1rem; }
+  .section-head p { max-width:56ch; margin:0; color:var(--muted); }
+
+  /* census board */
+  .census { display:flex; flex-wrap:wrap; gap:.85rem; margin:1.6rem 0 .4rem; }
+  .census div { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:.8rem 1.1rem; min-width:9rem; }
+  .census b { display:block; font-size:1.7rem; line-height:1.1; color:var(--accent); font-family:Georgia,serif; }
+  .census span { font-size:.8rem; color:var(--muted); letter-spacing:.04em; text-transform:uppercase; font-weight:700; }
+  .census .newest b { font-size:1.15rem; font-style:italic; font-weight:400; padding-top:.3rem; }
+
+  /* controls */
+  .controls { display:flex; flex-wrap:wrap; gap:.55rem; margin:1.1rem 0 0; }
+  .controls button { font-family:system-ui,sans-serif; font-size:.86rem; font-weight:750; cursor:pointer; border:1px solid var(--line); background:var(--card); color:var(--ink); border-radius:999px; padding:.5rem .85rem; }
+  .controls button:hover { border-color:var(--accent); }
+  .controls button[aria-pressed="true"] { background:var(--accent); border-color:var(--accent); color:#fff; }
+
+  /* featured */
+  .featured { margin-top:2.6rem; padding:clamp(1.1rem,3vw,1.8rem); border:1px solid var(--gold-line); border-radius:22px; background:linear-gradient(145deg,var(--gold-soft) 0%,var(--paper) 65%); display:flex; gap:1.4rem; align-items:center; flex-wrap:wrap; }
+  .featured img { width:min(15rem,100%); border:1px solid var(--gold-line); border-radius:8px; background:var(--parchment); }
+  .featured .fx { flex:1; min-width:16rem; }
+  .featured .eyebrow { color:var(--gold); font-size:.75rem; font-weight:850; letter-spacing:.06em; text-transform:uppercase; }
+  .featured h3 { margin:.3rem 0 .2rem; font-size:1.5rem; }
+  .featured .binomial { font-style:italic; color:var(--muted); }
+  .featured p { margin:.5rem 0 0; color:var(--muted); font-size:.95rem; max-width:52ch; }
+
+  /* filters */
+  .chiprow { display:flex; flex-wrap:wrap; gap:.4rem; margin:.5rem 0 0; }
+  .chiprow button { font-size:.8rem; cursor:pointer; border:1.5px solid var(--line); background:var(--card); color:var(--ink); border-radius:999px; padding:.32rem .78rem; font-weight:650; }
+  .chiprow button:hover { border-color:var(--accent); }
+  .chiprow button.on { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .filterlabel { display:block; margin-top:.9rem; }
+  .count { font-family:system-ui,sans-serif; font-size:.85rem; color:var(--muted); margin:.9rem 0 0; }
+
+  /* vitrines */
+  .vitrine-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1.1rem; margin-top:1.3rem; }
+  .vitrine { border:1px solid var(--line); border-radius:16px; background:var(--card); overflow:hidden; transition:box-shadow .25s ease, transform .16s ease, border-color .16s ease; }
+  .vitrine:hover { transform:translateY(-3px); border-color:var(--accent); box-shadow:0 14px 32px rgba(34,34,42,.11); }
+  body.lantern .vitrine { box-shadow:0 0 0 1px var(--gold-line), 0 0 34px rgba(212,179,106,.13); }
+  .vitrine-face { display:block; width:100%; text-align:left; border:0; background:none; padding:0; cursor:pointer; color:inherit; font:inherit; }
+  .plate { margin:0; background:var(--parchment); border-bottom:1px solid var(--line); aspect-ratio:4/3; overflow:hidden; }
+  .plate img { width:100%; height:100%; object-fit:cover; display:block; }
+  .plate-strip { padding: .9rem 1rem .95rem; }
+  .binomial { font-style:italic; }
+  .plate-strip .binomial { font-size:1.12rem; display:block; }
+  .tag { display:inline-block; font-size:.72rem; font-weight:750; letter-spacing:.04em; text-transform:uppercase; color:var(--accent); margin-top:.3rem; }
+  .ask { display:flex; justify-content:space-between; gap:.6rem; align-items:baseline; margin-top:.55rem; font-size:.85rem; color:var(--muted); }
+  .ask .flip { color:var(--gold); font-weight:800; white-space:nowrap; }
+  .vitrine-reveal { display:none; border-top:1px dashed var(--gold-line); background:var(--gold-soft); padding:.95rem 1rem 1.05rem; }
+  .vitrine.open .vitrine-reveal { display:block; }
+  .vitrine.open .ask .q { visibility:hidden; }
+  .vitrine-reveal .common { font-weight:700; font-size:1.02rem; }
+  .vitrine-reveal ul { margin:.5rem 0 .6rem; padding-left:1.15rem; font-size:.93rem; }
+  .vitrine-reveal li { margin:.25rem 0; }
+  .vitrine-reveal .links { display:flex; flex-wrap:wrap; gap:.9rem; margin-top:.6rem; font-family:system-ui,sans-serif; font-size:.86rem; font-weight:800; }
+  .vitrine-reveal .links a { color:var(--accent); text-decoration:none; }
+  .vitrine-reveal .links a:hover { text-decoration:underline; }
+  .wing-tag { display:inline-block; font-size:.68rem; font-weight:800; letter-spacing:.05em; text-transform:uppercase; color:var(--gold); border:1px solid var(--gold-line); border-radius:999px; padding:.08rem .55rem; margin-top:.65rem; }
+  body.names-off .name-bit { filter:blur(7px); }
+  .names-note { display:none; margin-top:.8rem; }
+  body.names-off .names-note { display:block; }
+
+  /* docent */
+  .tour { margin-top:1.2rem; border:1px solid var(--line); border-radius:16px; background:var(--card); padding:1.1rem 1.2rem; }
+  .tour h3 { margin:.1rem 0 .5rem; font-family:Georgia,serif; font-size:1.3rem; }
+  .tour ol { margin:.4rem 0 .6rem; padding-left:1.3rem; }
+  .tour li { margin:.3rem 0; }
+  .tour a { color:var(--accent); font-weight:700; text-decoration:none; }
+  .tour a:hover { text-decoration:underline; }
+
+  /* halls legend */
+  .hall-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:.85rem; }
+  .hall { background:var(--card); border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:12px; padding:1rem 1.1rem; }
+  .hall .eyebrow { font-size:.72rem; letter-spacing:.055em; text-transform:uppercase; color:var(--accent); font-weight:800; }
+  .hall h3 { margin:.18rem 0 .3rem; font-size:1.12rem; }
+  .hall p { margin:0; font-size:.9rem; color:var(--muted); }
+
+  /* phylogeny */
+  .wall { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:1.1rem 1.2rem; margin-top:1.2rem; overflow-x:auto; }
+  .wall svg { display:block; min-width:640px; width:100%; height:auto; }
+  .wall text { font-family:Georgia,serif; fill:var(--ink); }
+  .wall .sub { fill:var(--muted); font-family:system-ui,sans-serif; }
+  .wall a text.spec { fill:var(--accent); font-style:italic; }
+  .wall a:hover text.spec { text-decoration:underline; }
+
+  /* accession steps */
+  .steps { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:.85rem; }
+  .step-card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:1rem 1.1rem; font-size:.95rem; }
+  .step-num { display:inline-grid; place-items:center; width:1.65rem; height:1.65rem; border-radius:50%; color:#fff; background:var(--accent); font-weight:800; font-size:.85rem; margin-bottom:.45rem; }
+  .consent { margin-top:1rem; background:var(--gold-soft); border:1px solid var(--gold-line); border-radius:12px; padding:.9rem 1.1rem; font-size:.95rem; }
+  .consent strong { color:var(--gold); }
+
+  .backlinks { margin-top:1.4rem; padding:1rem 1.1rem; background:var(--green-soft); border:1px solid #b8d2c7; border-radius:12px; font-size:.95rem; }
+  .backlinks a.study { color:var(--green); font-weight:700; }
+  .backlinks a.trails { color:var(--orange); font-weight:700; }
+  footer { margin-top:3rem; border-top:1px solid var(--line); padding-top:1rem; font-size:.85rem; color:var(--muted); }
+  .err { color:#a8582f; font-family:system-ui,sans-serif; }
+
+  @media (max-width:920px) { .vitrine-grid,.hall-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } .steps { grid-template-columns:repeat(2,minmax(0,1fr)); } .section-head { display:block; } .section-head p { margin-top:.35rem; } }
+  @media (max-width:620px) { main { width:min(100% - 1.2rem,72rem); padding-top:1.5rem; } .vitrine-grid,.hall-grid,.steps { grid-template-columns:1fr; } section { margin-top:2.4rem; } }
+</style>
+</head>
+<body>
+<main>
+  <div class="kicker">Paper-App Studio · the second sister site</div>
+  <h1>The Bestiary</h1>
+  <div class="byline">A natural history of the creatures this cohort has built and shipped.</div>
+
+  <div class="thesis">
+    <p>Every specimen here is a paper-app: a small creature that is alive in the only way a webpage can be — it responds when touched. Each has been named by its collector, described in field notes, and shelved in the hall of the idea it best teaches.</p>
+    <p><strong>This is a census, not a contest.</strong> Every creature the cohort ships belongs here, with its collector's consent. Nothing is ranked, required, or collected from visitors.</p>
+  </div>
+
+  <div class="census" id="census" aria-label="Collection census"></div>
+
+  <div class="controls" aria-label="Museum controls">
+    <button id="namesBtn" aria-pressed="false">Names off</button>
+    <button id="lanternBtn" aria-pressed="false">Lantern mode</button>
+    <button id="docentBtn">Ask the docent for a tour</button>
+  </div>
+  <p class="note names-note">The placards are covered. Wander by plates alone — which creature is which?</p>
+
+  <div id="tourBox" class="tour" hidden></div>
+
+  <section id="featuredSec" aria-labelledby="featured-title" hidden>
+    <div class="featured" id="featured"></div>
+  </section>
+
+  <section id="collection" aria-labelledby="collection-title">
+    <div class="section-head">
+      <div>
+        <div class="kicker">The collection</div>
+        <h2 id="collection-title">The vitrines</h2>
+      </div>
+      <p>Each case shows the plate and the name first. Guess what the creature does, then approach the glass for its behaviors and its entry.</p>
+    </div>
+
+    <span class="note filterlabel">By hall — the idea each creature teaches:</span>
+    <div class="chiprow" id="hallChips"></div>
+    <span class="note filterlabel">By habitat — the territory it was caught in:</span>
+    <div class="chiprow" id="habitatChips"></div>
+    <span class="note filterlabel">By kind — which room keeps it:</span>
+    <div class="chiprow" id="kindChips"></div>
+
+    <p class="count" id="count"></p>
+    <div class="vitrine-grid" id="grid"><p class="note">Opening the halls…</p></div>
+  </section>
+
+  <section id="halls" aria-labelledby="halls-title">
+    <div class="section-head">
+      <div>
+        <div class="kicker">The floor plan</div>
+        <h2 id="halls-title">The six halls</h2>
+      </div>
+      <p>The course returns to six ideas about how AI systems work. Each hall keeps the creatures that teach one of them — the medieval bestiary gave every creature a lesson, and so does this one.</p>
+    </div>
+    <div class="hall-grid" id="hallGrid"></div>
+  </section>
+
+  <section id="phylogeny" aria-labelledby="phylogeny-title">
+    <div class="section-head">
+      <div>
+        <div class="kicker">One family</div>
+        <h2 id="phylogeny-title">The phylogeny wall</h2>
+      </div>
+      <p>Every collector in this cohort raised a Game of Life in Session 1, so the whole collection shares an ancestor. The tree grows as the course does.</p>
+    </div>
+    <div class="wall" id="wall"></div>
+  </section>
+
+  <section id="accession" aria-labelledby="accession-title">
+    <div class="section-head">
+      <div>
+        <div class="kicker">For collectors</div>
+        <h2 id="accession-title">How a creature gets in</h2>
+      </div>
+      <p>Nothing new to produce — every field below is something your paper-app already says or shows.</p>
+    </div>
+    <div class="steps">
+      <div class="step-card"><span class="step-num">1</span> Ship your app and submit the URL in Classroom, exactly as you already do.</div>
+      <div class="step-card"><span class="step-num">2</span> Say yes to accession, and name your creature — the Nomenclator at the accession desk can deal you a Latin name and its translation.</div>
+      <div class="step-card"><span class="step-num">3</span> Your paper layer becomes the field notes: what the reader can do, what it eats, how it behaves at the edges, what to notice, what remains unknown.</div>
+      <div class="step-card"><span class="step-num">4</span> The curator hangs the plate and the placard. Your creature stands in its hall from that day on.</div>
+    </div>
+    <div class="consent"><strong>Consent, always.</strong> Creatures enter only with their collector's okay, carry first names or field-names only, and are de-accessioned immediately on request — no questions, no ceremony.</div>
+    <div class="backlinks">
+      Wondering where creatures come from? The <a class="study" href="https://buildlittleworlds.github.io/instructor-study/">Instructor Study</a> demonstrates each week's idea, <a class="trails" href="https://buildlittleworlds.github.io/paper-app-trailheads/">Trailheads</a> marks the paths into your own territory, and the <a class="study" href="https://buildlittleworlds.github.io/instructor-study/anthology/">Anthology</a> keeps the world's specimens. What comes back from the trails gets housed here.
+    </div>
+  </section>
+
+  <footer>The Bestiary · a sister site to the Instructor Study · a census, not a contest · accession by consent, de-accession on request · the docent deals, it doesn't rank · nothing here collects, exports, or aggregates anything a visitor does.</footer>
+</main>
+
+<script>
+(async function () {
+  let data;
+  try {
+    data = await fetch('data/bestiary.json').then(r => r.json());
+  } catch (e) {
+    document.getElementById('grid').innerHTML =
+      '<p class="err">Could not open the halls. Serve this folder over HTTP (python3 -m http.server) or view the deployed site.</p>';
+    return;
+  }
+
+  const halls = Object.fromEntries(data.halls.map(h => [h.id, h]));
+  const habitats = Object.fromEntries(data.habitats.map(h => [h.id, h]));
+  const kinds = Object.fromEntries(data.kinds.map(k => [k.id, k]));
+  const specimens = data.specimens;
+
+  /* ---------- census (computed from the collection; authored nowhere) ---------- */
+  const collectors = [...new Set(specimens.map(s => s.collector))];
+  const hallsOccupied = [...new Set(specimens.map(s => s.hall))];
+  const newest = specimens[specimens.length - 1];
+  document.getElementById('census').innerHTML =
+    '<div><b>' + specimens.length + '</b><span>creature' + (specimens.length === 1 ? '' : 's') + '</span></div>' +
+    '<div><b>' + collectors.length + '</b><span>collector' + (collectors.length === 1 ? '' : 's') + '</span></div>' +
+    '<div><b>' + hallsOccupied.length + ' of 6</b><span>halls occupied</span></div>' +
+    (newest ? '<div class="newest"><b class="name-bit">' + newest.binomial + '</b><span>newest accession</span></div>' : '');
+
+  /* ---------- featured specimen: rotates by week number; an honor with no judging ---------- */
+  if (specimens.length) {
+    const week = Math.floor(Date.now() / (7 * 24 * 3600 * 1000));
+    const f = specimens[week % specimens.length];
+    document.getElementById('featuredSec').hidden = false;
+    document.getElementById('featured').innerHTML =
+      '<img src="' + f.plate + '" alt="Plate for ' + f.binomial + '">' +
+      '<div class="fx"><span class="eyebrow">This week’s featured specimen · the spotlight rotates on its own — no one is judged</span>' +
+      '<h3 class="name-bit">' + f.commonName + '</h3>' +
+      '<div class="binomial name-bit">' + f.binomial + ' — “' + f.translation + '”</div>' +
+      '<p>' + f.teachingLine + '</p>' +
+      '<p><a href="specimen.html?id=' + f.id + '" style="color:var(--gold);font-weight:700">Read its entry →</a></p></div>';
+  }
+
+  /* ---------- filters ---------- */
+  let activeHall = null, activeHabitat = null, activeKind = null;
+
+  function chipRow(el, items, getLabel, onPick) {
+    const all = document.createElement('button');
+    all.textContent = 'all'; all.classList.add('on');
+    all.addEventListener('click', () => { onPick(null); sync(); render(); });
+    el.appendChild(all);
+    items.forEach(item => {
+      const b = document.createElement('button');
+      b.textContent = getLabel(item);
+      b.dataset.id = item.id;
+      b.addEventListener('click', () => { onPick(item.id); sync(); render(); });
+      el.appendChild(b);
+    });
+    function sync() {
+      const active = el._active;
+      el.querySelectorAll('button').forEach(b =>
+        b.classList.toggle('on', b.dataset.id ? b.dataset.id === active : active == null));
+    }
+    return sync;
+  }
+  const hallEl = document.getElementById('hallChips');
+  const habEl = document.getElementById('habitatChips');
+  const kindEl = document.getElementById('kindChips');
+  const syncHall = chipRow(hallEl, data.halls, h => h.hall, id => { activeHall = (activeHall === id ? null : id); hallEl._active = activeHall; });
+  const syncHab = chipRow(habEl, data.habitats, h => h.label, id => { activeHabitat = (activeHabitat === id ? null : id); habEl._active = activeHabitat; });
+  const syncKind = chipRow(kindEl, data.kinds, k => k.room + ' (' + k.label.toLowerCase() + ')', id => { activeKind = (activeKind === id ? null : id); kindEl._active = activeKind; });
+
+  /* ---------- vitrines ---------- */
+  function render() {
+    const grid = document.getElementById('grid');
+    grid.innerHTML = '';
+    const visible = specimens.filter(s =>
+      (!activeHall || s.hall === activeHall) &&
+      (!activeHabitat || s.habitat === activeHabitat) &&
+      (!activeKind || s.kind === activeKind));
+    document.getElementById('count').textContent =
+      visible.length + ' of ' + specimens.length + ' creatures on display';
+    visible.forEach(s => {
+      const hall = halls[s.hall], hab = habitats[s.habitat];
+      const el = document.createElement('article');
+      el.className = 'vitrine';
+      el.innerHTML =
+        '<button class="vitrine-face" aria-expanded="false">' +
+          '<figure class="plate"><img loading="lazy" src="' + (s.plate || 'plates/unrecorded.svg') + '" alt="Plate: ' + s.binomial + '"></figure>' +
+          '<div class="plate-strip">' +
+            '<span class="binomial name-bit">' + s.binomial + '</span>' +
+            '<span class="tag">' + hall.hall + ' · ' + hab.label + ' · Session ' + s.sessionObserved + '</span>' +
+            '<span class="ask"><span class="q">What do you suppose it does?</span><span class="flip">approach the glass ↓</span></span>' +
+          '</div>' +
+        '</button>' +
+        '<div class="vitrine-reveal">' +
+          '<div class="common name-bit">' + s.commonName + ' — “' + s.translation + '”</div>' +
+          '<ul>' + s.behaviors.map(b => '<li>' + b + '</li>').join('') + '</ul>' +
+          '<div class="links">' +
+            '<a href="specimen.html?id=' + s.id + '">Read its entry →</a>' +
+            '<a href="' + s.url + '" target="_blank" rel="noopener">Enter its world ↗</a>' +
+          '</div>' +
+          (s.wing === 'founding' ? '<span class="wing-tag">Founding specimen — hung by the curator so the halls are never bare</span>' : '') +
+        '</div>';
+      const face = el.querySelector('.vitrine-face');
+      face.addEventListener('click', () => {
+        const open = el.classList.toggle('open');
+        face.setAttribute('aria-expanded', open);
+      });
+      grid.appendChild(el);
+    });
+    if (!visible.length) grid.innerHTML = '<p class="note">No creatures in this corner of the museum yet. The collection is still growing.</p>';
+  }
+
+  /* ---------- halls legend ---------- */
+  document.getElementById('hallGrid').innerHTML = data.halls.map(h => {
+    const n = specimens.filter(s => s.hall === h.id).length;
+    return '<div class="hall"><span class="eyebrow">Idea · ' + h.idea + '</span><h3>' + h.hall + '</h3><p>' + h.lesson + ' · ' +
+      (n ? n + ' creature' + (n === 1 ? '' : 's') : 'awaiting its first creature') + '</p></div>';
+  }).join('');
+
+  /* ---------- phylogeny wall ---------- */
+  (function wall() {
+    const sorted = [...specimens].sort((a, b) => a.sessionObserved - b.sessionObserved);
+    const rows = sorted.length + 1;
+    const rowH = 74, top = 46, H = top + rows * rowH + 30, W = 940, rootX = 302, rootY = H / 2, tipX = 522;
+    let svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="The family tree of the collection, rooted at Conway’s Game of Life.">';
+    svg += '<circle cx="' + rootX + '" cy="' + rootY + '" r="9" fill="var(--gold)"/>';
+    svg += '<text x="' + (rootX - 20) + '" y="' + (rootY - 4) + '" font-size="17" font-weight="bold" text-anchor="end">' + data.ancestor.name + '</text>';
+    svg += '<text class="sub" x="' + (rootX - 20) + '" y="' + (rootY + 16) + '" font-size="12.5" text-anchor="end">Session 1 — the common ancestor</text>';
+    sorted.forEach((s, i) => {
+      const y = top + i * rowH + rowH / 2;
+      svg += '<path d="M ' + (rootX + 10) + ' ' + rootY + ' C ' + (rootX + 130) + ' ' + rootY + ', ' + (tipX - 130) + ' ' + y + ', ' + (tipX - 12) + ' ' + y + '" fill="none" stroke="var(--accent)" stroke-width="2.2" opacity=".85"/>';
+      svg += '<a href="specimen.html?id=' + s.id + '"><circle cx="' + tipX + '" cy="' + y + '" r="7" fill="var(--accent)"/>' +
+        '<text class="spec name-bit" x="' + (tipX + 16) + '" y="' + (y + 5) + '" font-size="16.5">' + s.binomial + '</text>' +
+        '<text class="sub" x="' + (tipX + 16) + '" y="' + (y + 24) + '" font-size="12.5">Session ' + s.sessionObserved + ' · collected by ' + s.collector + '</text></a>';
+    });
+    const yLast = top + sorted.length * rowH + rowH / 2;
+    svg += '<path d="M ' + (rootX + 10) + ' ' + rootY + ' C ' + (rootX + 130) + ' ' + rootY + ', ' + (tipX - 130) + ' ' + yLast + ', ' + (tipX - 12) + ' ' + yLast + '" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="4 7" opacity=".6"/>';
+    svg += '<circle cx="' + tipX + '" cy="' + yLast + '" r="7" fill="none" stroke="var(--accent)" stroke-dasharray="3 4"/>';
+    svg += '<text class="sub" x="' + (tipX + 16) + '" y="' + (yLast + 5) + '" font-size="14" font-style="italic">the next creature — perhaps yours</text>';
+    svg += '</svg>';
+    document.getElementById('wall').innerHTML = svg;
+  })();
+
+  /* ---------- controls ---------- */
+  const namesBtn = document.getElementById('namesBtn');
+  namesBtn.addEventListener('click', () => {
+    const off = document.body.classList.toggle('names-off');
+    namesBtn.setAttribute('aria-pressed', off);
+    namesBtn.textContent = off ? 'Names on' : 'Names off';
+  });
+  const lanternBtn = document.getElementById('lanternBtn');
+  lanternBtn.addEventListener('click', () => {
+    const on = document.body.classList.toggle('lantern');
+    lanternBtn.setAttribute('aria-pressed', on);
+    lanternBtn.textContent = on ? 'Daylight' : 'Lantern mode';
+  });
+
+  /* ---------- the docent: deals a tour, doesn't rank ---------- */
+  const tourNames = [
+    'The After-Hours Round', 'Creatures That Eat Words', 'A Short Walk Through Chance',
+    'Three Temperaments', 'The Lantern-Lit Circuit', 'The New Acquisitions Stroll'
+  ];
+  document.getElementById('docentBtn').addEventListener('click', () => {
+    const box = document.getElementById('tourBox');
+    const pool = [...specimens].sort(() => Math.random() - .5).slice(0, Math.min(3, specimens.length));
+    const name = tourNames[Math.floor(Math.random() * tourNames.length)];
+    box.hidden = false;
+    box.innerHTML = '<span class="note">The docent clears their throat and proposes:</span><h3>“' + name + '”</h3><ol>' +
+      pool.map(s => '<li><a href="specimen.html?id=' + s.id + '" class="name-bit">' + s.binomial + '</a> — ' + s.marks + '</li>').join('') +
+      '</ol><span class="note">The docent deals tours at random; it doesn’t rank. Deal again for a different walk.</span>';
+  });
+
+  syncHall(); syncHab(); syncKind(); render();
+})();
+</script>
+</body>
+</html>

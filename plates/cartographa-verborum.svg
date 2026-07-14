@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="Field sketch of Cartographa verborum, the word-mapper: a turtle whose shell is a map of clustered points, each cluster keeping a ringed center.">
+  <defs>
+    <style>
+      .ink { stroke:#3b352c; fill:none; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+      .ink-thin { stroke:#3b352c; fill:none; stroke-width:1.6; stroke-linecap:round; }
+      .violet { fill:#5b4b8a; }
+      .cap { font-family:Georgia,serif; fill:#3b352c; }
+    </style>
+  </defs>
+  <rect width="1200" height="900" fill="#f7f2e5"/>
+  <rect x="28" y="28" width="1144" height="844" fill="none" stroke="#3b352c" stroke-width="3"/>
+  <rect x="44" y="44" width="1112" height="812" fill="none" stroke="#3b352c" stroke-width="1"/>
+
+  <!-- ground -->
+  <path class="ink" d="M140 660 Q 400 646 640 656 T 1060 652"/>
+  <g class="ink-thin" opacity=".65">
+    <path d="M200 676 l26 -6"/><path d="M260 682 l22 -5"/><path d="M330 678 l24 -6"/>
+    <path d="M700 674 l26 -6"/><path d="M780 680 l22 -5"/><path d="M900 676 l24 -6"/>
+    <path d="M180 700 l20 -4"/><path d="M560 696 l22 -5"/><path d="M980 694 l20 -4"/>
+  </g>
+  <!-- grass tufts -->
+  <g class="ink-thin">
+    <path d="M250 658 q -4 -22 -14 -30 M250 658 q 2 -24 -2 -34 M250 658 q 8 -20 16 -26"/>
+    <path d="M930 654 q -4 -20 -12 -27 M930 654 q 2 -22 -2 -30 M930 654 q 8 -18 14 -23"/>
+  </g>
+
+  <!-- turtle -->
+  <!-- shell dome -->
+  <path class="ink" d="M340 630 Q 330 430 560 388 Q 800 350 880 520 Q 906 580 892 630 Z" fill="#fbf7ec"/>
+  <path class="ink-thin" d="M356 630 Q 352 470 566 414 Q 776 372 862 528 Q 884 580 874 630" opacity=".8"/>
+  <!-- head & neck -->
+  <path class="ink" d="M340 596 Q 300 590 272 566 Q 246 544 244 516 Q 243 492 264 484 Q 292 474 314 494 Q 332 510 342 548" fill="#fbf7ec"/>
+  <circle cx="276" cy="508" r="5" fill="#3b352c"/>
+  <path class="ink-thin" d="M247 522 q 12 8 26 8"/>
+  <!-- legs -->
+  <path class="ink" d="M406 630 q -8 34 -4 44 l 40 0 q 6 -16 4 -44" fill="#fbf7ec"/>
+  <path class="ink" d="M760 630 q -6 34 -2 44 l 40 0 q 6 -16 2 -44" fill="#fbf7ec"/>
+  <!-- tail -->
+  <path class="ink" d="M892 610 q 40 6 56 -8"/>
+
+  <!-- the map on the shell -->
+  <!-- dashed coastlines -->
+  <path class="ink-thin" stroke-dasharray="7 8" d="M420 560 Q 470 470 588 452 Q 700 436 780 500"/>
+  <path class="ink-thin" stroke-dasharray="7 8" d="M470 606 Q 560 560 700 566 Q 780 570 830 604"/>
+  <!-- cluster a -->
+  <g class="violet">
+    <circle cx="500" cy="500" r="7"/><circle cx="532" cy="478" r="7"/><circle cx="472" cy="474" r="7"/>
+    <circle cx="514" cy="534" r="7"/><circle cx="470" cy="524" r="7"/>
+    <circle cx="498" cy="502" r="16" fill="none" stroke="#5b4b8a" stroke-width="3"/>
+    <circle cx="498" cy="502" r="26" fill="none" stroke="#5b4b8a" stroke-width="1.4" opacity=".7"/>
+  </g>
+  <!-- cluster b -->
+  <g class="violet">
+    <circle cx="690" cy="470" r="7"/><circle cx="722" cy="486" r="7"/><circle cx="668" cy="444" r="7"/>
+    <circle cx="704" cy="440" r="7"/><circle cx="736" cy="452" r="7"/><circle cx="700" cy="508" r="7"/>
+    <circle cx="702" cy="468" r="16" fill="none" stroke="#5b4b8a" stroke-width="3"/>
+    <circle cx="702" cy="468" r="26" fill="none" stroke="#5b4b8a" stroke-width="1.4" opacity=".7"/>
+  </g>
+  <!-- cluster c -->
+  <g class="violet">
+    <circle cx="600" cy="580" r="7"/><circle cx="632" cy="566" r="7"/><circle cx="570" cy="562" r="7"/>
+    <circle cx="612" cy="548" r="7"/>
+    <circle cx="602" cy="566" r="16" fill="none" stroke="#5b4b8a" stroke-width="3"/>
+  </g>
+  <!-- stray word far from every neighborhood -->
+  <circle cx="822" cy="560" r="7" fill="#5b4b8a" opacity=".55"/>
+  <text class="cap" x="838" y="552" font-size="24" font-style="italic" opacity=".8">?</text>
+
+  <!-- labels with leader lines -->
+  <path class="ink-thin" d="M498 502 L 430 420"/><text class="cap" x="414" y="410" font-size="26" font-style="italic">a.</text>
+  <path class="ink-thin" d="M702 468 L 790 400"/><text class="cap" x="796" y="392" font-size="26" font-style="italic">b.</text>
+
+  <!-- compass rose -->
+  <g transform="translate(1000,300)">
+    <circle r="34" class="ink-thin"/>
+    <path class="ink-thin" d="M0 -46 L0 46 M-46 0 L46 0"/>
+    <path d="M0 -34 L8 0 L0 34 L-8 0 Z" fill="#3b352c"/>
+    <text class="cap" x="-7" y="-54" font-size="22">N</text>
+  </g>
+
+  <!-- caption -->
+  <text class="cap" x="600" y="742" font-size="30" text-anchor="middle" letter-spacing="4">PL. I — CARTOGRAPHA VERBORUM</text>
+  <text class="cap" x="600" y="780" font-size="23" font-style="italic" text-anchor="middle">the word-mapper · a. a neighborhood of meanings — b. the prototype at its center</text>
+  <text class="cap" x="600" y="818" font-size="19" text-anchor="middle" opacity=".75">field sketch — the living specimen is kept in its enclosure</text>
+</svg>

@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="Field sketch of Hortus bifurcans, the forking garden: a stag whose antlers fork like branching sentences, a die half-buried at its feet.">
+  <defs>
+    <style>
+      .ink { stroke:#3b352c; fill:none; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+      .ink-thin { stroke:#3b352c; fill:none; stroke-width:1.6; stroke-linecap:round; }
+      .branch { stroke:#5b4b8a; fill:none; stroke-linecap:round; }
+      .leaf { fill:#5b4b8a; opacity:.85; }
+      .cap { font-family:Georgia,serif; fill:#3b352c; }
+    </style>
+  </defs>
+  <rect width="1200" height="900" fill="#f7f2e5"/>
+  <rect x="28" y="28" width="1144" height="844" fill="none" stroke="#3b352c" stroke-width="3"/>
+  <rect x="44" y="44" width="1112" height="812" fill="none" stroke="#3b352c" stroke-width="1"/>
+
+  <!-- ground -->
+  <path class="ink" d="M150 668 Q 420 654 660 664 T 1060 660"/>
+  <g class="ink-thin" opacity=".65">
+    <path d="M240 686 l24 -6"/><path d="M330 690 l22 -5"/><path d="M760 684 l26 -6"/>
+    <path d="M880 690 l22 -5"/><path d="M520 692 l24 -6"/><path d="M980 700 l20 -4"/>
+  </g>
+  <g class="ink-thin">
+    <path d="M360 664 q -4 -22 -13 -30 M360 664 q 2 -24 -2 -33 M360 664 q 8 -20 15 -26"/>
+    <path d="M900 660 q -4 -20 -12 -27 M900 660 q 2 -22 -2 -30 M900 660 q 8 -18 14 -23"/>
+  </g>
+
+  <!-- stag body, facing right -->
+  <path class="ink" d="M470 520 Q 452 470 496 448 Q 540 428 620 434 Q 700 438 730 420 Q 752 406 758 380
+           Q 764 402 780 410 Q 772 444 738 462 Q 742 520 716 552 Q 700 570 668 576
+           L 664 664 L 644 664 L 640 580 Q 580 588 530 574 L 526 664 L 506 664 L 502 566 Q 470 552 470 520 Z" fill="#fbf7ec"/>
+  <!-- far legs -->
+  <path class="ink-thin" d="M556 578 L 552 664 M690 570 L 694 664" opacity=".8"/>
+  <!-- head -->
+  <path class="ink" d="M758 380 Q 748 356 762 340 Q 776 326 800 330 Q 826 336 830 352 Q 832 362 822 366 L 796 372 Q 776 380 780 410" fill="#fbf7ec"/>
+  <circle cx="794" cy="348" r="4.5" fill="#3b352c"/>
+  <path class="ink-thin" d="M826 356 q 8 2 12 6"/>
+  <!-- ear -->
+  <path class="ink" d="M756 344 q -22 -10 -34 -2 q 14 12 34 10"/>
+  <!-- tail -->
+  <path class="ink-thin" d="M474 508 q -18 -4 -24 -16"/>
+
+  <!-- antlers: sentences that fork at every choice -->
+  <g class="branch">
+    <!-- main beam left -->
+    <path stroke-width="5" d="M762 332 Q 742 280 700 252"/>
+    <path stroke-width="3.4" d="M700 252 Q 664 232 636 236"/>
+    <path stroke-width="3.4" d="M700 252 Q 690 212 664 190"/>
+    <path stroke-width="2.2" d="M636 236 Q 606 240 588 258"/>
+    <path stroke-width="2.2" d="M636 236 Q 610 222 584 220"/>
+    <path stroke-width="2.2" d="M664 190 Q 640 172 614 170"/>
+    <path stroke-width="2.2" d="M664 190 Q 662 160 676 138"/>
+    <path stroke-width="1.4" d="M588 258 q -22 8 -32 22 M584 220 q -24 -2 -38 6 M614 170 q -22 -8 -38 -4 M676 138 q 2 -20 12 -30"/>
+    <!-- main beam right -->
+    <path stroke-width="5" d="M782 330 Q 798 274 842 246"/>
+    <path stroke-width="3.4" d="M842 246 Q 878 226 908 232"/>
+    <path stroke-width="3.4" d="M842 246 Q 850 206 878 184"/>
+    <path stroke-width="2.2" d="M908 232 Q 938 238 954 256"/>
+    <path stroke-width="2.2" d="M908 232 Q 934 216 962 216"/>
+    <path stroke-width="2.2" d="M878 184 Q 902 166 928 166"/>
+    <path stroke-width="2.2" d="M878 184 Q 878 152 862 132"/>
+    <path stroke-width="1.4" d="M954 256 q 22 10 30 24 M962 216 q 24 -4 40 4 M928 166 q 22 -10 38 -6 M862 132 q -4 -20 -14 -28"/>
+  </g>
+  <!-- leaves at the freshest tips -->
+  <g class="leaf">
+    <ellipse cx="552" cy="284" rx="9" ry="5" transform="rotate(-30 552 284)"/>
+    <ellipse cx="542" cy="228" rx="9" ry="5" transform="rotate(-8 542 228)"/>
+    <ellipse cx="572" cy="164" rx="9" ry="5" transform="rotate(-18 572 164)"/>
+    <ellipse cx="690" cy="105" rx="9" ry="5" transform="rotate(52 690 105)"/>
+    <ellipse cx="988" cy="284" rx="9" ry="5" transform="rotate(30 988 284)"/>
+    <ellipse cx="1006" cy="222" rx="9" ry="5" transform="rotate(8 1006 222)"/>
+    <ellipse cx="970" cy="158" rx="9" ry="5" transform="rotate(18 970 158)"/>
+    <ellipse cx="846" cy="101" rx="9" ry="5" transform="rotate(-52 846 101)"/>
+  </g>
+
+  <!-- the die, half-sunk at its feet -->
+  <g transform="translate(880,616)">
+    <path class="ink" d="M0 0 L54 -14 L98 6 L98 42 L46 58 L0 38 Z" fill="#fbf7ec"/>
+    <path class="ink" d="M0 0 L46 20 L98 6 M46 20 L46 58"/>
+    <!-- pips: top face 3, front-left 5 -->
+    <circle cx="38" cy="0" r="4" fill="#3b352c"/><circle cx="52" cy="5" r="4" fill="#3b352c"/><circle cx="66" cy="10" r="4" fill="#3b352c"/>
+    <circle cx="14" cy="16" r="4" fill="#3b352c"/><circle cx="30" cy="30" r="4" fill="#3b352c"/><circle cx="14" cy="40" r="4" fill="#3b352c"/>
+    <circle cx="30" cy="46" r="4" fill="#3b352c"/><circle cx="22" cy="29" r="4" fill="#3b352c"/>
+    <path class="ink-thin" d="M-14 40 q 20 12 60 20" opacity=".7"/>
+  </g>
+  <path class="ink-thin" d="M872 664 q 60 10 116 -4" opacity=".6"/>
+
+  <!-- labels -->
+  <path class="ink-thin" d="M664 190 L 560 120"/><text class="cap" x="518" y="110" font-size="26" font-style="italic">a.</text>
+  <path class="ink-thin" d="M928 636 L 1010 580"/><text class="cap" x="1018" y="572" font-size="26" font-style="italic">b.</text>
+
+  <!-- caption -->
+  <text class="cap" x="600" y="742" font-size="30" text-anchor="middle" letter-spacing="4">PL. II — HORTUS BIFURCANS</text>
+  <text class="cap" x="600" y="780" font-size="23" font-style="italic" text-anchor="middle">the forking garden · a. every tine a sentence it might have been — b. the dice that choose</text>
+  <text class="cap" x="600" y="818" font-size="19" text-anchor="middle" opacity=".75">field sketch — the living specimen is kept in its enclosure</text>
+</svg>

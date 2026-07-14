@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" role="img" aria-label="Field sketch of Lucerna contextus, the context-lantern: a moth carrying a lantern whose beam settles on the words that decide a meaning.">
+  <defs>
+    <style>
+      .ink { stroke:#3b352c; fill:none; stroke-width:3; stroke-linecap:round; stroke-linejoin:round; }
+      .ink-thin { stroke:#3b352c; fill:none; stroke-width:1.6; stroke-linecap:round; }
+      .cap { font-family:Georgia,serif; fill:#3b352c; }
+      .tile { fill:#fbf7ec; stroke:#3b352c; stroke-width:2; }
+      .tile-lit { fill:#f3e6c3; stroke:#3b352c; stroke-width:3; }
+      .word { font-family:Georgia,serif; font-size:30px; fill:#3b352c; text-anchor:middle; }
+    </style>
+  </defs>
+  <rect width="1200" height="900" fill="#f7f2e5"/>
+  <rect x="28" y="28" width="1144" height="844" fill="none" stroke="#3b352c" stroke-width="3"/>
+  <rect x="44" y="44" width="1112" height="812" fill="none" stroke="#3b352c" stroke-width="1"/>
+
+  <!-- the beam -->
+  <path d="M600 372 L 380 618 L 900 618 Z" fill="#e9c86a" opacity=".22"/>
+  <path class="ink-thin" d="M600 372 L 380 618 M600 372 L 900 618" stroke-dasharray="3 9" opacity=".7"/>
+
+  <!-- moth -->
+  <g transform="translate(600,240)">
+    <!-- upper wings, scalloped -->
+    <path class="ink" d="M-16 -6 Q -70 -78 -150 -92 Q -212 -100 -232 -66 Q -244 -40 -216 -20 Q -236 -6 -220 16 Q -204 36 -168 30 Q -110 22 -22 18 Z" fill="#fbf7ec"/>
+    <path class="ink" d="M16 -6 Q 70 -78 150 -92 Q 212 -100 232 -66 Q 244 -40 216 -20 Q 236 -6 220 16 Q 204 36 168 30 Q 110 22 22 18 Z" fill="#fbf7ec"/>
+    <!-- lower wings -->
+    <path class="ink" d="M-14 22 Q -60 60 -108 66 Q -150 70 -156 44 Q -158 24 -128 18 Q -70 12 -16 20 Z" fill="#fbf7ec"/>
+    <path class="ink" d="M14 22 Q 60 60 108 66 Q 150 70 156 44 Q 158 24 128 18 Q 70 12 16 20 Z" fill="#fbf7ec"/>
+    <!-- wing markings: eyespots and vein hatching -->
+    <circle cx="-136" cy="-40" r="17" class="ink-thin"/><circle cx="-136" cy="-40" r="7" fill="#5b4b8a"/>
+    <circle cx="136" cy="-40" r="17" class="ink-thin"/><circle cx="136" cy="-40" r="7" fill="#5b4b8a"/>
+    <g class="ink-thin" opacity=".75">
+      <path d="M-30 -12 Q -90 -44 -150 -52 M-28 0 Q -100 -16 -170 -10 M-26 10 Q -90 12 -150 22"/>
+      <path d="M30 -12 Q 90 -44 150 -52 M28 0 Q 100 -16 170 -10 M26 10 Q 90 12 150 22"/>
+    </g>
+    <!-- body -->
+    <ellipse cx="0" cy="16" rx="15" ry="42" fill="#fbf7ec" stroke="#3b352c" stroke-width="3"/>
+    <g class="ink-thin"><path d="M-13 0 L13 0 M-14 14 L14 14 M-12 28 L12 28 M-9 42 L9 42"/></g>
+    <circle cx="0" cy="-30" r="12" fill="#fbf7ec" stroke="#3b352c" stroke-width="3"/>
+    <!-- feathered antennae -->
+    <g class="ink-thin">
+      <path d="M-6 -40 Q -30 -80 -58 -96"/>
+      <path d="M-14 -52 l-8 -3 M-22 -62 l-9 -3 M-31 -72 l-9 -4 M-41 -81 l-9 -4 M-50 -89 l-9 -4"/>
+      <path d="M6 -40 Q 30 -80 58 -96"/>
+      <path d="M14 -52 l8 -3 M22 -62 l9 -3 M31 -72 l9 -4 M41 -81 l9 -4 M50 -89 l9 -4"/>
+    </g>
+    <!-- lantern hanging beneath -->
+    <path class="ink-thin" d="M0 58 L 0 92"/>
+    <g transform="translate(0,112)">
+      <path class="ink" d="M-4 -22 q 4 -8 8 0" />
+      <path class="ink" d="M-16 -18 L16 -18 L20 -2 L-20 -2 Z" fill="#fbf7ec"/>
+      <path class="ink" d="M-20 -2 L-14 22 L14 22 L20 -2" fill="#f3e6c3"/>
+      <path class="ink-thin" d="M-7 -2 L-5 22 M7 -2 L5 22"/>
+      <circle cx="0" cy="10" r="5" fill="#c9962e"/>
+      <path class="ink" d="M-10 22 L10 22 L6 30 L-6 30 Z" fill="#fbf7ec"/>
+    </g>
+  </g>
+
+  <!-- the sentence, five tiles; two settle under the beam -->
+  <g transform="translate(0,618)">
+    <rect class="tile"  x="252" y="0" width="120" height="76" rx="6" opacity=".55"/>
+    <rect class="tile-lit" x="392" y="0" width="150" height="76" rx="6"/>
+    <rect class="tile"  x="562" y="0" width="96"  height="76" rx="6" opacity=".55"/>
+    <rect class="tile"  x="678" y="0" width="96"  height="76" rx="6" opacity=".55"/>
+    <rect class="tile-lit" x="794" y="0" width="150" height="76" rx="6"/>
+    <text class="word" x="312" y="48" opacity=".6">the</text>
+    <text class="word" x="467" y="48" font-weight="bold">bank</text>
+    <text class="word" x="610" y="48" opacity=".6">of</text>
+    <text class="word" x="726" y="48" opacity=".6">the</text>
+    <text class="word" x="869" y="48" font-weight="bold">river</text>
+  </g>
+  <!-- small rays over the lit tiles -->
+  <g class="ink-thin" opacity=".8">
+    <path d="M467 600 l0 -14 M447 602 l-5 -13 M487 602 l5 -13"/>
+    <path d="M869 600 l0 -14 M849 602 l-5 -13 M889 602 l5 -13"/>
+  </g>
+
+  <!-- labels -->
+  <path class="ink-thin" d="M600 352 L 480 300"/><text class="cap" x="438" y="292" font-size="26" font-style="italic">a.</text>
+  <path class="ink-thin" d="M944 640 L 1020 580"/><text class="cap" x="1028" y="572" font-size="26" font-style="italic">b.</text>
+
+  <!-- caption -->
+  <text class="cap" x="600" y="760" font-size="30" text-anchor="middle" letter-spacing="4">PL. III — LUCERNA CONTEXTUS</text>
+  <text class="cap" x="600" y="798" font-size="23" font-style="italic" text-anchor="middle">the context-lantern · a. the beam it must sweep before a meaning settles — b. the words that decide the matter</text>
+  <text class="cap" x="600" y="834" font-size="19" text-anchor="middle" opacity=".75">field sketch — the glow is a hand-drawn teaching cue, not a model's mind</text>
+</svg>

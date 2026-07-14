@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23f7f2e5%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%277.5%27 fill=%27%235b4b8a%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2711.5%27 fill=%27none%27 stroke=%27%23a9853b%27 stroke-width=%272.4%27/%3E%3C/svg%3E">
+<title>Specimen — The Bestiary</title>
+<style>
+  :root {
+    --ink:#22222a; --muted:#6b6b76; --paper:#fdfcf9; --card:#ffffff;
+    --line:#e3e0d8; --accent:#5b4b8a; --accent-soft:#efecf6;
+    --gold:#a9853b; --gold-soft:#f6efdf; --gold-line:#e0d0a8;
+    --green:#2f6f5e; --orange:#c96b32; --parchment:#f7f2e5;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:Georgia,"Times New Roman",serif; line-height:1.7; font-size:1.05rem; }
+  main { max-width:50rem; margin:0 auto; padding:2.5rem 1.25rem 5rem; }
+  .kicker,.note,.eyebrow,.crumbs,footer,.tag,.placard-label,.stage { font-family:system-ui,sans-serif; }
+  .kicker { font-size:.8rem; letter-spacing:.08em; text-transform:uppercase; color:var(--accent); }
+  .crumbs { font-size:.86rem; margin-bottom:1.6rem; }
+  .crumbs a { color:var(--accent); font-weight:700; text-decoration:none; }
+  .crumbs a:hover { text-decoration:underline; }
+  h1 { font-size:clamp(2rem,5vw,3rem); line-height:1.08; margin:.2rem 0 .3rem; letter-spacing:-.02em; }
+  .binomial { font-style:italic; }
+  .titleline { color:var(--muted); font-size:1.15rem; margin-bottom:.4rem; }
+  .tag { display:inline-block; font-size:.74rem; font-weight:800; letter-spacing:.05em; text-transform:uppercase; color:var(--accent); background:var(--accent-soft); border-radius:999px; padding:.2rem .7rem; margin:.15rem .25rem .15rem 0; }
+  .note { font-size:.86rem; color:var(--muted); }
+
+  figure.plate { margin:1.8rem 0; border:1px solid var(--gold-line); border-radius:10px; background:var(--parchment); padding:.7rem; }
+  figure.plate img { width:100%; display:block; border-radius:4px; }
+  figure.plate figcaption { text-align:center; font-size:.9rem; color:var(--muted); padding-top:.55rem; font-style:italic; }
+
+  h2 { font-size:1.3rem; margin:2.4rem 0 .8rem; border-top:1px solid var(--line); padding-top:1.4rem; }
+  dl.field-notes { margin:1rem 0 0; }
+  dl.field-notes dt { font-family:system-ui,sans-serif; font-size:.74rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-top:.85rem; }
+  dl.field-notes dd { margin:.15rem 0 0; }
+  ul.behaviors { margin:.6rem 0 0; padding-left:1.2rem; }
+  ul.behaviors li { margin:.4rem 0; }
+
+  .entry { margin-top:1rem; }
+  .entry p:first-of-type::first-letter { font-size:3.4em; float:left; line-height:.85; padding:.06em .12em 0 0; color:var(--accent); font-weight:700; }
+  .teaching { background:var(--gold-soft); border:1px solid var(--gold-line); border-left:4px solid var(--gold); border-radius:8px; padding:.9rem 1.1rem; margin:1.4rem 0; font-style:italic; }
+
+  /* enclosure */
+  .enclosure { border:1px solid var(--gold-line); border-radius:14px; overflow:hidden; background:var(--card); margin-top:1rem; box-shadow:0 14px 40px rgba(34,34,42,.08); }
+  .placard-bar { display:flex; justify-content:space-between; align-items:center; gap:1rem; background:linear-gradient(180deg,var(--gold-soft),#efe3c4); border-bottom:1px solid var(--gold-line); padding:.6rem 1rem; }
+  .placard-bar .who { font-size:.95rem; }
+  .placard-label { font-size:.72rem; font-weight:800; letter-spacing:.07em; text-transform:uppercase; color:var(--gold); }
+  .glass { position:relative; aspect-ratio:4/3; background:var(--parchment); }
+  .glass iframe { position:absolute; inset:0; width:100%; height:100%; border:0; }
+  .glass .cover { position:absolute; inset:0; display:grid; place-items:center; text-align:center; padding:1.5rem; background:linear-gradient(160deg,rgba(253,252,249,.55) 0%,rgba(247,242,229,.92) 100%); }
+  .glass .cover img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; z-index:-1; opacity:.9; }
+  .wake { font-family:system-ui,sans-serif; font-weight:800; font-size:1rem; cursor:pointer; color:#fff; background:var(--accent); border:0; border-radius:999px; padding:.85rem 1.5rem; box-shadow:0 10px 26px rgba(91,75,138,.35); }
+  .wake:hover { transform:translateY(-1px); }
+  .cover .hint { display:block; margin-top:.7rem; font-size:.85rem; color:var(--muted); font-family:system-ui,sans-serif; }
+  .field-away { display:grid; place-items:center; position:absolute; inset:0; text-align:center; padding:1.5rem; background:var(--parchment); }
+  .enclosure-foot { display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between; padding:.65rem 1rem; border-top:1px solid var(--gold-line); font-family:system-ui,sans-serif; font-size:.86rem; }
+  .enclosure-foot a { color:var(--accent); font-weight:800; text-decoration:none; }
+  .enclosure-foot a:hover { text-decoration:underline; }
+
+  /* authorship placard */
+  .placard { background:var(--card); border:1px solid var(--gold-line); border-radius:10px; padding:1.1rem 1.2rem; margin-top:1rem; }
+  .placard h3 { margin:0 0 .2rem; font-size:1.05rem; }
+  .placard dl { margin:.4rem 0 0; }
+  .placard dt { font-family:system-ui,sans-serif; font-size:.72rem; font-weight:800; letter-spacing:.06em; text-transform:uppercase; color:var(--gold); margin-top:.7rem; }
+  .placard dd { margin:.1rem 0 0; font-size:.97rem; }
+
+  .open-q { background:var(--accent-soft); border-left:4px solid var(--accent); padding:.9rem 1.1rem; margin:1.2rem 0; }
+  .lineage li { margin:.35rem 0; }
+  .stage { display:inline-block; font-size:.74rem; font-weight:800; letter-spacing:.05em; text-transform:uppercase; color:var(--muted); border:1px solid var(--line); border-radius:999px; padding:.14rem .6rem; margin-right:.3rem; }
+  footer { margin-top:3rem; border-top:1px solid var(--line); padding-top:1rem; font-size:.85rem; color:var(--muted); }
+  footer a.study { color:var(--green); font-weight:700; }
+  footer a.trails { color:var(--orange); font-weight:700; }
+  .err { color:#a8582f; font-family:system-ui,sans-serif; }
+</style>
+</head>
+<body>
+<main id="page">
+  <p class="note">Fetching the specimen’s file from the registrar…</p>
+</main>
+
+<script>
+(async function () {
+  const page = document.getElementById('page');
+  let data;
+  try {
+    data = await fetch('data/bestiary.json').then(r => r.json());
+  } catch (e) {
+    page.innerHTML = '<p class="err">Could not open the registrar’s files. Serve this folder over HTTP (python3 -m http.server) or view the deployed site.</p>';
+    return;
+  }
+  const id = new URLSearchParams(location.search).get('id');
+  const s = data.specimens.find(x => x.id === id) || data.specimens[0];
+  if (!s) { page.innerHTML = '<p class="err">No specimens are on file yet.</p>'; return; }
+
+  const hall = data.halls.find(h => h.id === s.hall);
+  const hab = data.habitats.find(h => h.id === s.habitat);
+  const kind = data.kinds.find(k => k.id === s.kind);
+  document.title = s.binomial + ' — The Bestiary';
+
+  const plateNum = data.specimens.indexOf(s) + 1;
+  const roman = n => ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX'][n-1] || n;
+
+  page.innerHTML =
+    '<div class="kicker">The Bestiary · ' + hall.hall + '</div>' +
+    '<nav class="crumbs"><a href="index.html">← Back to the halls</a></nav>' +
+    '<h1>Of the ' + s.commonName.replace(/^The /i, '') + '</h1>' +
+    '<div class="titleline"><span class="binomial">' + s.binomial + '</span> — “' + s.translation + '” · collected by ' + s.collector + ', Session ' + s.sessionObserved + '</div>' +
+    '<div>' +
+      '<span class="tag">' + hall.hall + '</span>' +
+      '<span class="tag">Habitat · ' + hab.label + '</span>' +
+      '<span class="tag">' + kind.room + '</span>' +
+      (s.stages || []).map(st => '<span class="stage">' + st.stage + ' · s' + st.session + '</span>').join('') +
+    '</div>' +
+
+    '<figure class="plate"><img src="' + (s.plate || 'plates/unrecorded.svg') + '" alt="Plate ' + roman(plateNum) + ': ' + s.binomial + '">' +
+    '<figcaption>Pl. ' + roman(plateNum) + ' — ' + (s.plateKind || 'plate') + ', hung at accession</figcaption></figure>' +
+
+    '<h2>The entry</h2>' +
+    '<div class="entry"><p>' + s.entry + '</p></div>' +
+    '<div class="teaching">' + s.teachingLine + '</div>' +
+
+    '<h2>Field notes</h2>' +
+    '<dl class="field-notes">' +
+      '<dt>Observed behaviors</dt><dd><ul class="behaviors">' + s.behaviors.map(b => '<li>' + b + '</li>').join('') + '</ul></dd>' +
+      '<dt>Diet</dt><dd>' + s.diet + '</dd>' +
+      '<dt>Temperament</dt><dd>' + s.temperament + '</dd>' +
+      '<dt>Distinguishing marks</dt><dd>' + s.marks + '</dd>' +
+    '</dl>' +
+
+    '<h2>The enclosure</h2>' +
+    '<p class="note">The living specimen. It wakes only when you tap the glass — enclosures stay dark until a visitor approaches.</p>' +
+    '<div class="enclosure">' +
+      '<div class="placard-bar"><span class="who"><span class="binomial">' + s.binomial + '</span> · collected by ' + s.collector + '</span><span class="placard-label">Live specimen</span></div>' +
+      '<div class="glass" id="glass">' +
+        '<div class="cover" id="cover">' +
+          '<img src="' + (s.plate || 'plates/unrecorded.svg') + '" alt="">' +
+          '<div><button class="wake" id="wake">Tap the glass</button><span class="hint">The creature wakes inside the case — or enter its world below.</span></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="enclosure-foot">' +
+        '<a href="' + s.url + '" target="_blank" rel="noopener">Enter its world ↗</a>' +
+        '<span class="note">Its true home: ' + new URL(s.url).host + '</span>' +
+      '</div>' +
+    '</div>' +
+
+    '<h2>The collector’s placard</h2>' +
+    '<div class="placard"><h3>Made by many hands, honestly named</h3><dl>' +
+      '<dt>AI helped</dt><dd>' + s.placard.aiHelped + '</dd>' +
+      '<dt>The collector chose</dt><dd>' + s.placard.chose + '</dd>' +
+      '<dt>Tested</dt><dd>' + s.placard.tested + '</dd>' +
+      '<dt>Changed or rejected</dt><dd>' + s.placard.changedOrRejected + '</dd>' +
+    '</dl></div>' +
+
+    '<h2>Of its nature, little is yet known</h2>' +
+    '<div class="open-q">' + s.openQuestion + '<br><span class="note">Every entry in this bestiary ends open on purpose. Open questions are how the next creature gets found.</span></div>' +
+
+    '<h2>Lineage</h2>' +
+    '<ul class="lineage">' + s.lineage.map(l => '<li>' + l + '</li>').join('') +
+    '<li class="note">Common ancestor of the whole collection: ' + data.ancestor.name + ' — ' + data.ancestor.note + '</li></ul>' +
+
+    '<footer>The Bestiary · <a href="index.html">back to the halls</a> · kin sites: <a class="study" href="https://buildlittleworlds.github.io/instructor-study/">the Instructor Study</a> · <a class="trails" href="https://buildlittleworlds.github.io/paper-app-trailheads/">Trailheads</a> · <a class="study" href="https://buildlittleworlds.github.io/instructor-study/anthology/">the Anthology</a> · nothing here collects anything a visitor does.</footer>';
+
+  /* wake the creature: lazy iframe with an honest fallback */
+  document.getElementById('wake').addEventListener('click', () => {
+    const glass = document.getElementById('glass');
+    const cover = document.getElementById('cover');
+    const iframe = document.createElement('iframe');
+    iframe.title = s.commonName + ' — the live specimen';
+    iframe.src = s.url;
+    let loaded = false;
+    iframe.addEventListener('load', () => { loaded = true; cover.remove(); });
+    setTimeout(() => {
+      if (!loaded) {
+        iframe.remove();
+        cover.innerHTML = '<div class="field-away"><div><strong>Currently in the field.</strong><br>' +
+          '<span class="note">The enclosure could not be woken just now — the specimen may be roaming. Try “Enter its world” instead.</span></div></div>';
+      }
+    }, 9000);
+    glass.appendChild(iframe);
+    cover.querySelector('.wake').textContent = 'Waking…';
+    cover.querySelector('.wake').disabled = true;
+  });
+})();
+</script>
+</body>
+</html>

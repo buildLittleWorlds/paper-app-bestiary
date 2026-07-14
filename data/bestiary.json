@@ -1,0 +1,137 @@
+{
+  "note": "The cohort Bestiary — the growing record of every creature this class has shipped. Accession = append one row (newest last) and push. Wings: founding (curator demonstrations so the halls are never bare) and cohort (the collection itself — student creatures, first names or field-names only, accessioned with consent, de-accessioned on request).",
+  "ancestor": {
+    "name": "Conway's Game of Life",
+    "note": "The common ancestor. Every collector built one in Session 1; every creature in this bestiary descends from that first grid, by blood or by argument."
+  },
+  "halls": [
+    { "id": "maps", "hall": "Hall of Maps", "idea": "Embeddings & prototypes", "lesson": "Meaning has a geography; every kind keeps a center." },
+    { "id": "dice", "hall": "Hall of Dice", "idea": "Probability & temperature", "lesson": "Where chance enters, and how hot to roll it." },
+    { "id": "lanterns", "hall": "Hall of Lanterns", "idea": "Attention & context", "lesson": "What a thing must see before its meaning settles." },
+    { "id": "learned-ways", "hall": "Hall of Learned Ways", "idea": "Training & learned behavior", "lesson": "Rules written, rules learned, rules that simply emerged." },
+    { "id": "trials", "hall": "Hall of Trials", "idea": "Evaluation & robustness", "lesson": "Three meanings of \"it works,\" and which is hardest to pass." },
+    { "id": "many-hands", "hall": "Hall of Many Hands", "idea": "Judgment & authorship", "lesson": "Who made this, honestly answered." }
+  ],
+  "habitats": [
+    { "id": "living-things", "label": "Living things" },
+    { "id": "games-play", "label": "Games & play" },
+    { "id": "music-sound", "label": "Music & sound" },
+    { "id": "stories-words", "label": "Stories & words" },
+    { "id": "art-pictures", "label": "Art & pictures" },
+    { "id": "everyday-life", "label": "Everyday life" },
+    { "id": "the-grid", "label": "The Grid", "note": "For creatures that stayed in the Life universe — loving the Game of Life is still allowed." }
+  ],
+  "kinds": [
+    { "id": "interactive", "label": "Interactive", "room": "The Vivarium" },
+    { "id": "image", "label": "Image", "room": "The Print Room" },
+    { "id": "sound", "label": "Sound", "room": "The Aviary" },
+    { "id": "text", "label": "Text", "room": "The Scriptorium" }
+  ],
+  "specimens": [
+    {
+      "id": "cartographa-verborum",
+      "wing": "founding",
+      "binomial": "Cartographa verborum",
+      "translation": "the word-mapper",
+      "commonName": "The Map of Meaning",
+      "collector": "the curator",
+      "sessionObserved": 1,
+      "habitat": "stories-words",
+      "hall": "maps",
+      "kind": "interactive",
+      "url": "https://buildlittleworlds.github.io/instructor-study/session-01/",
+      "plate": "plates/cartographa-verborum.svg",
+      "plateKind": "field sketch",
+      "behaviors": [
+        "Offer it a word and watch the word take its place among its neighbors on the map.",
+        "Open a cluster and inspect the prototype resting quietly at its center."
+      ],
+      "diet": "words, and the distances between them",
+      "temperament": "placid and unhurried; the middle of its map grows crowded when overfed",
+      "marks": "similar meanings roost near one another, and every kind keeps a quiet center",
+      "openQuestion": "What lives at the far edge of the map, where the neighborhoods thin?",
+      "entry": "This creature carries a map of meaning on its back, and on the map every word must live somewhere. Offer it a word — any word — and it places the newcomer among its kin: cold beside ice, ember beside flame. At the middle of every neighborhood the mapper keeps a small monument it calls the prototype — not any real word, but the center the others gather around. It does not argue about meanings; it only shows you where they live, and lets the nearness do the arguing.",
+      "teachingLine": "Thus it teaches Prototypes: meaning has a geography, and every kind keeps a center.",
+      "placard": {
+        "aiHelped": "AI wrote the in-browser embedding demo and the map's first projection.",
+        "chose": "The curator chose which words seed the map and how a cluster reveals its center.",
+        "tested": "Fed it words no one had tried in class, to see where strangers get shelved.",
+        "changedOrRejected": "Rejected a three-dimensional map as harder to read than a flat one."
+      },
+      "lineage": [
+        "Its own line — first of the founding specimens, observed the same week the cohort raised its Games of Life."
+      ],
+      "stages": [ { "stage": "founding specimen", "session": 1 } ]
+    },
+    {
+      "id": "hortus-bifurcans",
+      "wing": "founding",
+      "binomial": "Hortus bifurcans",
+      "translation": "the forking garden",
+      "commonName": "The Garden of Forking Sentences",
+      "collector": "the curator",
+      "sessionObserved": 2,
+      "habitat": "stories-words",
+      "hall": "dice",
+      "kind": "interactive",
+      "url": "https://buildlittleworlds.github.io/instructor-study/session-02/",
+      "plate": "plates/hortus-bifurcans.svg",
+      "plateKind": "field sketch",
+      "behaviors": [
+        "Plant a seed sentence and watch it branch into the sentences it might have been.",
+        "Turn the temperature and watch the garden grow tame, or wander past sense."
+      ],
+      "diet": "a seed sentence and a pinch of chance",
+      "temperament": "obedient when cold; above a certain heat it forgets the trellis entirely",
+      "marks": "the same seed never grows quite the same garden twice — unless the dice are frozen",
+      "openQuestion": "Would a reader notice if two branches, grown far apart, said the same thing?",
+      "entry": "The gardener plants one sentence and the creature does the rest: at every word it pauses, weighs everything that might come next, and lets the dice choose among the likeliest. Kept cool, it grows the same tidy hedge a hundred times over. Warmed, it wanders — beautifully at first, then strangely, then past sense. Visitors argue about where in that warming the garden is most alive, which is exactly the argument the creature was raised to start.",
+      "teachingLine": "Thus it teaches Temperature: chance enters at the choosing of the next word, and heat decides how far from the likeliest path the dice may stray.",
+      "placard": {
+        "aiHelped": "AI wrote the branching tree and the sampling code beneath it.",
+        "chose": "The curator chose the seed sentences and where the temperature dial sits.",
+        "tested": "Ran the same seed at three temperatures, side by side, more than once.",
+        "changedOrRejected": "Cut a fourth, hotter setting that turned every branch to noise."
+      },
+      "lineage": [
+        "Kin to Where Does Randomness Enter? — the Life randomness lab, its elder sibling in the Hall of Dice."
+      ],
+      "stages": [ { "stage": "founding specimen", "session": 2 } ]
+    },
+    {
+      "id": "lucerna-contextus",
+      "wing": "founding",
+      "binomial": "Lucerna contextus",
+      "translation": "the context-lantern",
+      "commonName": "The Attention Spotlight",
+      "collector": "the curator",
+      "sessionObserved": 3,
+      "habitat": "stories-words",
+      "hall": "lanterns",
+      "kind": "interactive",
+      "url": "https://buildlittleworlds.github.io/instructor-study/session-03/",
+      "plate": "plates/lucerna-contextus.svg",
+      "plateKind": "field sketch",
+      "behaviors": [
+        "Choose a focus word and guess which of its neighbors matter, before the reveal.",
+        "Widen or narrow what the creature may see — one neighbor, three, or the whole sentence."
+      ],
+      "diet": "sentences containing one word whose meaning has not yet settled",
+      "temperament": "steady; it never pretends its glow is anything but a hand-drawn teaching cue",
+      "marks": "the same word — bank, sharp, bark — changes its animal under a different beam",
+      "openQuestion": "If it listened to a melody instead of a sentence, what should its lantern light — the beat, the key, the hook?",
+      "entry": "This creature will not say what a word means until it has swept its lantern across the word's companions. Grant it a single neighbor and it guesses timidly; grant it the whole sentence and the beam settles, bright and particular, on the few words that decide the matter — river or money, blade or wit. It keeps one honesty stitched into its hide: the glow is a cue drawn by hand for teaching, not a reading of any model's mind. Beside it in the hall hangs its foil, the fixed ring of the old grid, so that visitors may compare a creature that sees only its touching neighbors with one that may look far.",
+      "teachingLine": "Thus it teaches Context: a meaning is not in the word but in what the word is allowed to see.",
+      "placard": {
+        "aiHelped": "AI wrote the spotlight interactions and the ring-versus-beam comparison bench.",
+        "chose": "The curator authored the glowing cues by hand and chose the example sentences.",
+        "tested": "Checked that the comparison never claims the two mechanisms are the same.",
+        "changedOrRejected": "Rejected an earlier coat whose glow implied real attention weights."
+      },
+      "lineage": [
+        "Conway's Game of Life — the fixed ring of neighbors is this creature's foil, and the argument of its exhibit."
+      ],
+      "stages": [ { "stage": "founding specimen", "session": 3 } ]
+    }
+  ]
+}
