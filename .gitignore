@@ -1,1 +1,6 @@
 .DS_Store
+
+# Local-only plate-capture tooling (capture.mjs); never deployed
+tools/node_modules/
+tools/package.json
+tools/package-lock.json

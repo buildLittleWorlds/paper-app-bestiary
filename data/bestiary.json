@@ -132,6 +132,164 @@
         "Conway's Game of Life — the fixed ring of neighbors is this creature's foil, and the argument of its exhibit."
       ],
       "stages": [ { "stage": "founding specimen", "session": 3 } ]
+    },
+    {
+      "id": "machina-ludens",
+      "wing": "cohort",
+      "binomial": "Machina ludens",
+      "translation": "the playing engine",
+      "commonName": "The Game of Life Simulator",
+      "collector": "Henry",
+      "sessionObserved": 1,
+      "habitat": "the-grid",
+      "hall": "learned-ways",
+      "kind": "interactive",
+      "url": "https://bob0929.github.io/game-of-life-simulator-test/",
+      "plate": "plates/machina-ludens.png",
+      "plateKind": "plate",
+      "behaviors": [
+        "Pick a classic pattern — glider, lightweight spaceship, pulsar, Gosper glider gun — and stamp it onto the board.",
+        "Toggle any cell by hand, set the speed, then press Play and watch the four rules take over.",
+        "Run the collector's Plus Discovery: plus-shaped seeds at 3×3, 7×7, and 11×11 lock into stable patterns, while 5×5, 9×9, and 13×13 collapse to nothing."
+      ],
+      "diet": "a seed pattern and the four rules of Life",
+      "temperament": "the grid wraps at its edges; a plus-shaped seed lives or dies purely by its size, not its shape",
+      "marks": "the Plus Discovery — stability and collapse alternate as the plus grows, 3/7/11 surviving where 5/9/13 die out",
+      "openQuestion": "Why do the plus seeds alternate — what do 3, 7, and 11 share that 5, 9, and 13 do not?",
+      "entry": "",
+      "teachingLine": "Thus it teaches Emergence: four simple rules, and a shape's whole fate is decided by nothing but its size.",
+      "placard": { "aiHelped": "", "chose": "", "tested": "", "changedOrRejected": "" },
+      "lineage": [
+        "Descended directly from Conway's Game of Life, the common ancestor of the whole collection — this creature is that ancestor itself, raised in a new enclosure with the collector's Plus Discovery bred in."
+      ],
+      "stages": [ { "stage": "hatchling", "session": 1 } ]
+    },
+    {
+      "id": "lucerna-urbanus",
+      "wing": "cohort",
+      "binomial": "Lucerna urbanus",
+      "translation": "the town lantern",
+      "commonName": "Context Changes Meaning",
+      "collector": "Kevin",
+      "sessionObserved": 3,
+      "habitat": "everyday-life",
+      "hall": "lanterns",
+      "kind": "interactive",
+      "url": "https://dong11kevin.github.io/Traffic-Lights-and-Perspectives/",
+      "plate": "plates/lucerna-urbanus.png",
+      "plateKind": "plate",
+      "behaviors": [
+        "Play five seconds of an intersection and watch a single traffic light change.",
+        "Choose a role — Driver, Walker, Cyclist, or Observer — and read what the very same light means to each.",
+        "Watch a meaning shift as time passes, not only as the role changes."
+      ],
+      "diet": "one traffic signal and the role you choose to watch it from",
+      "temperament": "honest about its limits; it shows one intersection, not real traffic law or every kind of signal",
+      "marks": "the same light, four readings — meaning lives in the role, not in the signal",
+      "openQuestion": "What happens at the moment two roles read the same light in ways that collide?",
+      "entry": "",
+      "teachingLine": "Thus it teaches Context: a meaning is not in the signal but in who is allowed to read it.",
+      "placard": { "aiHelped": "", "chose": "", "tested": "", "changedOrRejected": "" },
+      "lineage": [
+        "Kin to Lucerna contextus, the founding Attention Spotlight — both teach that context, not the thing itself, settles a meaning.",
+        "Descended from the collector's Session 1 Game of Life, like every creature in the collection."
+      ],
+      "stages": [ { "stage": "hatchling", "session": 3 } ]
+    },
+    {
+      "id": "lucerna-curiosus",
+      "wing": "cohort",
+      "binomial": "Lucerna curiosus",
+      "translation": "the curious lantern",
+      "commonName": "Comics Run on Context",
+      "collector": "Rosie",
+      "sessionObserved": 3,
+      "habitat": "art-pictures",
+      "hall": "lanterns",
+      "kind": "interactive",
+      "url": "https://rosiewu25.github.io/trailheads-comic-test/",
+      "plate": "plates/lucerna-curiosus.png",
+      "plateKind": "plate",
+      "behaviors": [
+        "Read a single reaction panel on its own and decide what the face is feeling.",
+        "Reveal the previous panel, then read the very same face again.",
+        "Notice that the drawing never changed — only what you brought to it did."
+      ],
+      "diet": "one unchanged face and the panel you reveal before it",
+      "temperament": "modest by design; it claims only that context can reshape a reading, not that every panel depends on the last",
+      "marks": "the reaction face is identical before and after the reveal — the meaning moves, the drawing does not",
+      "openQuestion": "Stage 1 shows one previous panel — what happens with two, or with one that contradicts the face?",
+      "entry": "",
+      "teachingLine": "Thus it teaches Context: the same face, reread once its cause is shown, is no longer the same face.",
+      "placard": { "aiHelped": "", "chose": "", "tested": "", "changedOrRejected": "" },
+      "lineage": [
+        "Kin to Lucerna contextus, the founding Attention Spotlight, and to Lucerna urbanus in the same hall — a family that all teach context over content.",
+        "Descended from the collector's Session 1 Game of Life, like every creature in the collection."
+      ],
+      "stages": [ { "stage": "hatchling", "session": 3 } ]
+    },
+    {
+      "id": "speculum-cotidianus",
+      "wing": "cohort",
+      "binomial": "Speculum cotidianus",
+      "translation": "the everyday mirror",
+      "commonName": "Same Input, Different Output",
+      "collector": "Jennifer",
+      "sessionObserved": 3,
+      "habitat": "everyday-life",
+      "hall": "lanterns",
+      "kind": "interactive",
+      "url": "https://noobcorn.github.io/same-input-different-output/",
+      "plate": "plates/speculum-cotidianus.png",
+      "plateKind": "plate",
+      "behaviors": [
+        "Pick a role — Driver, Walker, or Cyclist — standing at a single signal.",
+        "Read the action each role takes from the very same system state.",
+        "Trace the creature's own rule, written on its wall: Signal + Context + Rules → Action."
+      ],
+      "diet": "one system state and the role reading it",
+      "temperament": "honest about scope; it models one signal, not the many rules, signs, and safety conditions of real traffic",
+      "marks": "it spells out its own mechanism — Signal + Context + Rules → Action — so nothing hides",
+      "openQuestion": "If two roles must share one intersection, whose reading of the signal wins?",
+      "entry": "",
+      "teachingLine": "Thus it teaches Context: one input yields different outputs once the observer's role and rules are set.",
+      "placard": { "aiHelped": "", "chose": "", "tested": "", "changedOrRejected": "" },
+      "lineage": [
+        "Sibling to Lucerna urbanus, Context Changes Meaning — two collectors caught the same idea at the same signal, and both belong.",
+        "Kin to the founding Lucerna contextus; descended from the collector's Session 1 Game of Life."
+      ],
+      "stages": [ { "stage": "hatchling", "session": 3 } ]
+    },
+    {
+      "id": "fabrica-cotidianus",
+      "wing": "cohort",
+      "binomial": "Fabrica cotidianus",
+      "translation": "the everyday workshop",
+      "commonName": "CSS Style Lab Studio",
+      "collector": "Alven",
+      "sessionObserved": 4,
+      "habitat": "everyday-life",
+      "hall": "many-hands",
+      "kind": "interactive",
+      "url": "https://alven356.github.io/Homework-UI-Design-Guide/",
+      "plate": "plates/fabrica-cotidianus.png",
+      "plateKind": "plate",
+      "behaviors": [
+        "Walk five guided pages that build the idea before handing you a single control.",
+        "Design one reusable element — choose a style (Glass, Soft UI, Neon, Poster…), a shape, a color, a shadow — and save it.",
+        "Drop your saved elements onto a page playground, arrange them, and download the whole page as standalone HTML."
+      ],
+      "diet": "design choices — a style, a shape, a color, a shadow — and the elements you save",
+      "temperament": "methodical; it insists you learn the path before it hands over the controls, and keeps making and using in separate rooms",
+      "marks": "it separates learning, designing, and assembling into three rooms so no one has to understand everything at once",
+      "openQuestion": "Could each playground page become one slide, so the workshop builds whole presentations too?",
+      "entry": "",
+      "teachingLine": "Thus it teaches Authorship: a finished design is a stack of choices someone made on purpose and can reuse.",
+      "placard": { "aiHelped": "", "chose": "", "tested": "", "changedOrRejected": "" },
+      "lineage": [
+        "Descended from the collector's Session 1 Game of Life, like every creature in the collection."
+      ],
+      "stages": [ { "stage": "hatchling", "session": 4 } ]
     }
   ]
 }
