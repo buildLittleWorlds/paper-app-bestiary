@@ -240,6 +240,8 @@
   const habitats = Object.fromEntries(data.habitats.map(h => [h.id, h]));
   const kinds = Object.fromEntries(data.kinds.map(k => [k.id, k]));
   const specimens = data.specimens;
+  /* accession promises a plate before the file exists; a plate that fails to load falls back to the unrecorded placeholder */
+  const plateFallback = ' onerror="this.onerror=null;this.src=\'plates/unrecorded.svg\'"';
 
   /* ---------- census (computed from the collection; authored nowhere) ---------- */
   const collectors = [...new Set(specimens.map(s => s.collector))];
@@ -257,7 +259,7 @@
     const f = specimens[week % specimens.length];
     document.getElementById('featuredSec').hidden = false;
     document.getElementById('featured').innerHTML =
-      '<img src="' + f.plate + '" alt="Plate for ' + f.binomial + '">' +
+      '<img src="' + (f.plate || 'plates/unrecorded.svg') + '" alt="Plate for ' + f.binomial + '"' + plateFallback + '>' +
       '<div class="fx"><span class="eyebrow">This week’s featured specimen · the spotlight rotates on its own — no one is judged</span>' +
       '<h3 class="name-bit">' + f.commonName + '</h3>' +
       '<div class="binomial name-bit">' + f.binomial + ' — “' + f.translation + '”</div>' +
@@ -310,7 +312,7 @@
       el.className = 'vitrine';
       el.innerHTML =
         '<button class="vitrine-face" aria-expanded="false">' +
-          '<figure class="plate"><img loading="lazy" src="' + (s.plate || 'plates/unrecorded.svg') + '" alt="Plate: ' + s.binomial + '"></figure>' +
+          '<figure class="plate"><img loading="lazy" src="' + (s.plate || 'plates/unrecorded.svg') + '" alt="Plate: ' + s.binomial + '"' + plateFallback + '></figure>' +
           '<div class="plate-strip">' +
             '<span class="binomial name-bit">' + s.binomial + '</span>' +
             '<span class="tag">' + hall.hall + ' · ' + hab.label + ' · Session ' + s.sessionObserved + '</span>' +
@@ -322,7 +324,7 @@
           '<ul>' + s.behaviors.map(b => '<li>' + b + '</li>').join('') + '</ul>' +
           '<div class="links">' +
             '<a href="specimen.html?id=' + s.id + '">Read its entry →</a>' +
-            '<a href="' + s.url + '" target="_blank" rel="noopener">Enter its world ↗</a>' +
+            (s.url ? '<a href="' + s.url + '" target="_blank" rel="noopener">Enter its world ↗</a>' : '') +
           '</div>' +
           (s.wing === 'founding' ? '<span class="wing-tag">Founding specimen — hung by the curator so the halls are never bare</span>' : '') +
         '</div>';

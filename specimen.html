@@ -101,6 +101,16 @@
   const plateNum = data.specimens.indexOf(s) + 1;
   const roman = n => ['I','II','III','IV','V','VI','VII','VIII','IX','X','XI','XII','XIII','XIV','XV','XVI','XVII','XVIII','XIX','XX'][n-1] || n;
 
+  /* sparse rows are legitimate: an early accession may lack its plate file, its URL, its entry, or its placard lines */
+  const plateFallback = ' onerror="this.onerror=null;this.src=\'plates/unrecorded.svg\'"';
+  let host = ''; try { host = new URL(s.url).host; } catch (e) {}
+  const p = s.placard || {};
+  const placardSlots =
+    (p.aiHelped ? '<dt>AI helped</dt><dd>' + p.aiHelped + '</dd>' : '') +
+    (p.chose ? '<dt>The collector chose</dt><dd>' + p.chose + '</dd>' : '') +
+    (p.tested ? '<dt>Tested</dt><dd>' + p.tested + '</dd>' : '') +
+    (p.changedOrRejected ? '<dt>Changed or rejected</dt><dd>' + p.changedOrRejected + '</dd>' : '');
+
   page.innerHTML =
     '<div class="kicker">The Bestiary · ' + hall.hall + '</div>' +
     '<nav class="crumbs"><a href="index.html">← Back to the halls</a></nav>' +
@@ -113,11 +123,13 @@
       (s.stages || []).map(st => '<span class="stage">' + st.stage + ' · s' + st.session + '</span>').join('') +
     '</div>' +
 
-    '<figure class="plate"><img src="' + (s.plate || 'plates/unrecorded.svg') + '" alt="Plate ' + roman(plateNum) + ': ' + s.binomial + '">' +
+    '<figure class="plate"><img src="' + (s.plate || 'plates/unrecorded.svg') + '" alt="Plate ' + roman(plateNum) + ': ' + s.binomial + '"' + plateFallback + '>' +
     '<figcaption>Pl. ' + roman(plateNum) + ' — ' + (s.plateKind || 'plate') + ', hung at accession</figcaption></figure>' +
 
-    '<h2>The entry</h2>' +
-    '<div class="entry"><p>' + s.entry + '</p></div>' +
+    (s.entry
+      ? '<h2>The entry</h2>' +
+        '<div class="entry"><p>' + s.entry + '</p></div>'
+      : '') +
     '<div class="teaching">' + s.teachingLine + '</div>' +
 
     '<h2>Field notes</h2>' +
@@ -129,28 +141,37 @@
     '</dl>' +
 
     '<h2>The enclosure</h2>' +
-    '<p class="note">The living specimen. It wakes only when you tap the glass — enclosures stay dark until a visitor approaches.</p>' +
-    '<div class="enclosure">' +
-      '<div class="placard-bar"><span class="who"><span class="binomial">' + s.binomial + '</span> · collected by ' + s.collector + '</span><span class="placard-label">Live specimen</span></div>' +
-      '<div class="glass" id="glass">' +
-        '<div class="cover" id="cover">' +
-          '<img src="' + (s.plate || 'plates/unrecorded.svg') + '" alt="">' +
-          '<div><button class="wake" id="wake">Tap the glass</button><span class="hint">The creature wakes inside the case — or enter its world below.</span></div>' +
-        '</div>' +
-      '</div>' +
-      '<div class="enclosure-foot">' +
-        '<a href="' + s.url + '" target="_blank" rel="noopener">Enter its world ↗</a>' +
-        '<span class="note">Its true home: ' + new URL(s.url).host + '</span>' +
-      '</div>' +
-    '</div>' +
+    (s.url
+      ? '<p class="note">The living specimen. It wakes only when you tap the glass — enclosures stay dark until a visitor approaches.</p>' +
+        '<div class="enclosure">' +
+          '<div class="placard-bar"><span class="who"><span class="binomial">' + s.binomial + '</span> · collected by ' + s.collector + '</span><span class="placard-label">Live specimen</span></div>' +
+          '<div class="glass" id="glass">' +
+            '<div class="cover" id="cover">' +
+              '<img src="' + (s.plate || 'plates/unrecorded.svg') + '" alt=""' + plateFallback + '>' +
+              '<div><button class="wake" id="wake">Tap the glass</button><span class="hint">The creature wakes inside the case — or enter its world below.</span></div>' +
+            '</div>' +
+          '</div>' +
+          '<div class="enclosure-foot">' +
+            '<a href="' + s.url + '" target="_blank" rel="noopener">Enter its world ↗</a>' +
+            (host ? '<span class="note">Its true home: ' + host + '</span>' : '') +
+          '</div>' +
+        '</div>'
+      : '<p class="note">The registrar has no address on file for this creature yet.</p>' +
+        '<div class="enclosure">' +
+          '<div class="placard-bar"><span class="who"><span class="binomial">' + s.binomial + '</span> · collected by ' + s.collector + '</span><span class="placard-label">Currently in the field</span></div>' +
+          '<div class="glass">' +
+            '<div class="cover">' +
+              '<img src="' + (s.plate || 'plates/unrecorded.svg') + '" alt=""' + plateFallback + '>' +
+              '<div><strong>Currently in the field.</strong><span class="hint">No enclosure address is on file yet — the glass will open once the creature’s URL is recorded.</span></div>' +
+            '</div>' +
+          '</div>' +
+        '</div>'
+    ) +
 
-    '<h2>The collector’s placard</h2>' +
-    '<div class="placard"><h3>Made by many hands, honestly named</h3><dl>' +
-      '<dt>AI helped</dt><dd>' + s.placard.aiHelped + '</dd>' +
-      '<dt>The collector chose</dt><dd>' + s.placard.chose + '</dd>' +
-      '<dt>Tested</dt><dd>' + s.placard.tested + '</dd>' +
-      '<dt>Changed or rejected</dt><dd>' + s.placard.changedOrRejected + '</dd>' +
-    '</dl></div>' +
+    (placardSlots
+      ? '<h2>The collector’s placard</h2>' +
+        '<div class="placard"><h3>Made by many hands, honestly named</h3><dl>' + placardSlots + '</dl></div>'
+      : '') +
 
     '<h2>Of its nature, little is yet known</h2>' +
     '<div class="open-q">' + s.openQuestion + '<br><span class="note">Every entry in this bestiary ends open on purpose. Open questions are how the next creature gets found.</span></div>' +
@@ -161,8 +182,8 @@
 
     '<footer>The Bestiary · <a href="index.html">back to the halls</a> · kin sites: <a class="study" href="https://buildlittleworlds.github.io/instructor-study/">the Instructor Study</a> · <a class="trails" href="https://buildlittleworlds.github.io/paper-app-trailheads/">Trailheads</a> · <a class="study" href="https://buildlittleworlds.github.io/instructor-study/anthology/">the Anthology</a> · nothing here collects anything a visitor does.</footer>';
 
-  /* wake the creature: lazy iframe with an honest fallback */
-  document.getElementById('wake').addEventListener('click', () => {
+  /* wake the creature: lazy iframe with an honest fallback (no wake button when the specimen has no URL) */
+  if (s.url) document.getElementById('wake').addEventListener('click', () => {
     const glass = document.getElementById('glass');
     const cover = document.getElementById('cover');
     const iframe = document.createElement('iframe');
