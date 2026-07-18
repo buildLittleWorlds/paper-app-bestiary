@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%277%27 fill=%27%23f7f2e5%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%277.5%27 fill=%27%235b4b8a%27/%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2711.5%27 fill=%27none%27 stroke=%27%23a9853b%27 stroke-width=%272.4%27/%3E%3C/svg%3E">
 <title>Specimen — The Bestiary</title>
+<script defer src="studio-nav.js" data-site="bestiary"></script>
 <style>
   :root {
     --ink:#22222a; --muted:#6b6b76; --paper:#fdfcf9; --card:#ffffff;
@@ -180,7 +181,7 @@
     '<ul class="lineage">' + s.lineage.map(l => '<li>' + l + '</li>').join('') +
     '<li class="note">Common ancestor of the whole collection: ' + data.ancestor.name + ' — ' + data.ancestor.note + '</li></ul>' +
 
-    '<footer>The Bestiary · <a href="index.html">back to the halls</a> · kin sites: <a class="study" href="https://buildlittleworlds.github.io/instructor-study/">the Instructor Study</a> · <a class="trails" href="https://buildlittleworlds.github.io/paper-app-trailheads/">Trailheads</a> · <a class="study" href="https://buildlittleworlds.github.io/instructor-study/anthology/">the Anthology</a> · nothing here collects anything a visitor does.</footer>';
+    '<footer>The Bestiary · <a href="index.html">back to the halls</a> · <a class="study" href="https://buildlittleworlds.github.io/instructor-study/anthology/">the Anthology</a> · nothing here collects anything a visitor does.</footer>';
 
   /* wake the creature: lazy iframe with an honest fallback (no wake button when the specimen has no URL) */
   if (s.url) document.getElementById('wake').addEventListener('click', () => {
