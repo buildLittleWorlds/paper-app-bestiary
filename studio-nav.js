@@ -41,7 +41,9 @@
       ['session-05/', '5', 'Your R-pentomino'],
       ['session-06/', '6', 'Three Tests of "It Works"'],
       ['session-07/', '7', 'Change One Layer'],
-      ['session-08/', '8', 'The Naming of Your Things']
+      ['session-08/', '8', 'The Naming of Your Things'],
+      ['session-09/', '9', 'Order Is an Argument'],
+      ['session-10/', '10', 'Made by Many Hands']
     ]
   };
 
